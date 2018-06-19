@@ -5,6 +5,7 @@ import main from '@/components/main';
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
