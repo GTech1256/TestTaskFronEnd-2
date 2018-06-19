@@ -27,7 +27,7 @@
 <script>
 
 import axios from 'axios';
-import localDB from '../../static/localDB';
+import localDB from '../../../static/localDB';
 
 const mainLink = 'https://koshelek.ru/api';
 

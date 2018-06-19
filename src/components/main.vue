@@ -33,21 +33,21 @@ div(class="panel")
 
 </template>
 <script>
-import currencies from './currencies';
-import transfer from './transfer';
+import MarketRates from './tabs/MarketRates';
+import Localbitcoins from './tabs/Localbitcoins';
 import smartSelect from './smartSelect';
 import tableResponse from './tableResponse';
 import message from './message';
 
 const tabs = [{
   id: 0,
-  name: { eng: 'Currencies', rus: 'Валюты' },
-  value: currencies,
+  name: { eng: 'MarketRates', rus: 'Валюты' },
+  value: MarketRates,
 },
 {
   id: 1,
-  name: { eng: 'Transfer', rus: 'Переводы' },
-  value: transfer,
+  name: { eng: 'Localbitcoins', rus: 'Переводы' },
+  value: Localbitcoins,
 },
 ];
 
@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       tabs,
-      currentTabIndex: 1,
+      currentTabIndex: 0,
       showPicker: false,
       dataForPick: [],
       pickedData: {},

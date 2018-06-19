@@ -16,9 +16,24 @@
 <script>
 
 import axios from 'axios';
-import localDB from '../../static/localDB';
+import localDB from '../../../static/localDB';
 
-const mainLink = 'https://koshelek.ru/api/Rates';
+/*
+
+GET /api/MarketRates/{pair}           Gets historical data about pair rate || date from | date to
+
+GET /api/MarketRates/{pair}/{market}  Gets historical data about pair rate on concrete market ||
+date from | date to
+
+GET /api/MarketRates/pairs            Gets all pairs
+
+GET /api/MarketRates/pairs/{market}   Gets market pairs
+
+GET /api/MarketRates/markets          Gets all markets
+
+ */
+
+const mainLink = 'https://koshelek.ru/api/MarketRates';
 const pairsLink = `${mainLink}/pairs`;
 const marketsLink = `${mainLink}/markets`;
 
@@ -46,14 +61,19 @@ export default {
   },
   async created() {
     try {
+      console.log(pairsLink);
       const pairsResponse = await axios.get(pairsLink);
       let { data } = pairsResponse;
+      // to normalize name
+      data = this.normalizePairsByAssociation(data);
+
       this.selects[0].data = data;
       // this.selects[0].picked = data[0];
 
       const marketsResponse = await axios.get(marketsLink);
 
       ({ data: { data } = marketsResponse });
+
 
       this.selects[1].data = data;
       // this.selects[1].picked = data[0];
@@ -88,6 +108,17 @@ export default {
         this.$emit('showMsg', { type: 'crash', text: `${e}. Ошибка отправки/принятия запроса. Данные загружены из локальной БД` });
         this.$emit('showTable', localDB.pars);
       }
+    },
+    normalizePairsByAssociation(array) {
+      // array ['','']
+      const { associaces } = localDB;
+      const newArr = array.map((item) => {
+        console.log(associaces[item]);
+        const newName = associaces[item] || item;
+        return newName;
+      });
+      console.log(newArr);
+      return newArr;
     },
   },
 };
