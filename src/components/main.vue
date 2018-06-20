@@ -25,6 +25,7 @@ div(class="panel")
           :picked="pickedData"
           @showMsg="ShowMsg"
           @showTable="showTable"
+          @itemPicked="setPickedItem"
         )
 
     tableResponse(:data="tableData" v-if="tableData.length > 0")

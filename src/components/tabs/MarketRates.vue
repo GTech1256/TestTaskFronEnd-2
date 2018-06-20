@@ -42,7 +42,7 @@ const mainLink = 'https://koshelek.ru/api/MarketRates';
 const pairsLink = `${mainLink}/pairs`;
 const marketsLink = `${mainLink}/markets`;
 
-let oldMarket = '';
+let oldMarket;
 
 export default {
   props: [
@@ -90,6 +90,7 @@ export default {
         if (markets !== oldMarket) {
           if (this.didLoadByMarket) {
             this.loadPairsByMarket();
+            this.$emit('itemPicked', { name: 'pairs' });
           }
           oldMarket = markets;
         }
@@ -102,7 +103,6 @@ export default {
     },
     marketsData(data) {
       this.selects[1].data = data;
-      this.picked.pairs = '';
 
       /*
       if (!this.picked.markets) {
