@@ -2,15 +2,24 @@
 
   .items
     .items__params
-      label.items__params_checkbox(for="didLoadByMarket" title="Пары, которыех нет в бирже будут убраны")
+      label.items__params_checkbox(
+        for="didLoadByMarket"
+        title="Пары, которыех нет в бирже будут убраны"
+      )
         span.items__params_by_pairs_text Загружать пары из биржи
-        input.items__params_by_pairs_input(type="checkbox" id="didLoadByMarket" v-model="didLoadByMarket" checked)
+        input.items__params_by_pairs_input(
+          type="checkbox"
+          id="didLoadByMarket"
+          v-model="didLoadByMarket"
+          checked
+        )
 
     .items__item.flex(v-for="params in selects")
       label(:for="params.name" @click="this.$emit('pickData',['тест','da'])" )
         h1 {{params.value}}
       .items__item_input( @click="$emit('pickData', { name: params.name, items: params.data })" )
         p {{ picked[params.name] || 'Выбрать значение' }}
+        p {{ picked }}
     .btn(@click="getRates")
       p Получить данные
 
