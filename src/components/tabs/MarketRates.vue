@@ -102,6 +102,8 @@ export default {
     },
     marketsData(data) {
       this.selects[1].data = data;
+      this.picked.pairs = '';
+
       /*
       if (!this.picked.markets) {
         return;
