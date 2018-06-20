@@ -1,19 +1,24 @@
 <template lang="pug">
 
-  div(class="items")
-    div(v-for="params in selects" class="flex items__item")
+  .items
+    .items__params
+      label.items__params_checkbox(for="didLoadByMarket" title="Пары, которыех нет в бирже будут убраны")
+        span.items__params_by_pairs_text Загружать пары из биржи
+        input.items__params_by_pairs_input(type="checkbox" id="didLoadByMarket" v-model="didLoadByMarket" checked)
+
+    .items__item.flex(v-for="params in selects")
       label(:for="params.name" @click="this.$emit('pickData',['тест','da'])" )
         h1 {{params.value}}
-      div(
-        class="items__item_input"
-        @click="$emit('pickData', { name: params.name, items: params.data })"
-      )
-        p {{ picked[params.name]|| 'Выбрать значение' }}
+      .items__item_input( @click="$emit('pickData', { name: params.name, items: params.data })" )
+        p {{ picked[params.name] || 'Выбрать значение' }}
     .btn(@click="getRates")
       p Получить данные
 
 </template>
 <script>
+
+// import customCheckbox from '../customCheckbox';
+
 
 import axios from 'axios';
 import localDB from '../../../static/localDB';
@@ -37,12 +42,20 @@ const mainLink = 'https://koshelek.ru/api/MarketRates';
 const pairsLink = `${mainLink}/pairs`;
 const marketsLink = `${mainLink}/markets`;
 
+let oldMarket = '';
+
 export default {
   props: [
     'picked',
   ],
+  components: {
+    // customCheckbox,
+  },
   data() {
     return {
+      didLoadByMarket: true,
+      pairsData: [],
+      marketsData: [],
       selects: [
         {
           value: 'Пара*:',
@@ -59,24 +72,59 @@ export default {
       ],
     };
   },
+  watch: {
+    async didLoadByMarket(didLoadByMarket) {
+      if (didLoadByMarket) {
+        this.loadPairsByMarket();
+      } else if (this.picked.markets) {
+        const marketsResponse = await axios.get(pairsLink);
+
+        const { data } = marketsResponse;
+
+
+        this.pairsData = data;
+      }
+    },
+    picked: {
+      handler({ markets }) {
+        if (markets !== oldMarket) {
+          if (this.didLoadByMarket) {
+            this.loadPairsByMarket();
+          }
+          oldMarket = markets;
+        }
+      },
+      deep: true,
+    },
+    pairsData(data) {
+      this.selects[0].data = data;
+      console.log('new pairs', data.length);
+    },
+    marketsData(data) {
+      this.selects[1].data = data;
+      /*
+      if (!this.picked.markets) {
+        return;
+      }
+      */
+    },
+  },
   async created() {
     try {
       console.log(pairsLink);
       const pairsResponse = await axios.get(pairsLink);
       let { data } = pairsResponse;
       // to normalize name
-      data = this.normalizePairsByAssociation(data);
+      // data = this.normalizePairsByAssociation(data);
 
-      this.selects[0].data = data;
-      // this.selects[0].picked = data[0];
+      this.pairsData = data;
 
       const marketsResponse = await axios.get(marketsLink);
 
       ({ data: { data } = marketsResponse });
 
 
-      this.selects[1].data = data;
-      // this.selects[1].picked = data[0];
+      this.marketsData = data;
     } catch (e) {
       console.error(e);
       this.$emit('showMsg', { type: 'crash', text: 'Ошибка отправки/принятия запроса' });
@@ -85,19 +133,22 @@ export default {
   methods: {
     async getRates() {
       try {
-        const pair = this.picked.pairs;
+        let pair = this.picked.pairs;
         if (!pair) {
           this.$emit('showMsg', { type: 'warning', text: 'Пара не выбрана' });
           return;
         }
+        pair = pair.replace('/', '%2');
         let link = `${mainLink}/${pair}`;
 
-        const markets = this.picked.markets;
+        let markets = this.picked.markets;
         if (!markets) {
           this.$emit('showMsg', { type: 'info', text: 'Биржа не учтена т к не выбрана' });
         } else {
+          markets = markets.replace('/', '%2');
           link += `/${markets}`;
         }
+        console.log(link);
         const response = await axios.get(link);
         if (response.data.length === 0) {
           this.$emit('showMsg', { type: 'info', text: 'По вашему запросу нечего не найдено' });
@@ -113,21 +164,47 @@ export default {
       // array ['','']
       const { associaces } = localDB;
       const newArr = array.map((item) => {
-        console.log(associaces[item]);
         const newName = associaces[item] || item;
         return newName;
       });
       console.log(newArr);
       return newArr;
     },
+    async loadPairsByMarket() {
+      let markets = this.picked.markets;
+      if (!markets) {
+        return;
+      }
+      markets = markets.replace('/', '%2');
+      const link = `${pairsLink}/${markets}`;
+
+      console.log(link);
+      const response = await axios.get(link);
+      this.pairsData = response.data;
+    },
   },
 };
 </script>
 <style lang="stylus">
 
+lightGreyColor= #d9d9d9
 
-.flex
-  display:flex
+.items__params_checkbox
+  display flex
+  max-width 30%
+  border 2px solid lightGreyColor
+  border-radius 20px
+  padding 20px
+
+  margin 20px 0
+
+
+.items__params_by_pairs_text
+  font-weight: bold
+  margin auto 0
+
+.items__params_by_pairs_input
+  max-width 30%
 
 
 h1

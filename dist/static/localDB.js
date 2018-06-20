@@ -3864,5 +3864,1779 @@ export default {
       "ts": "2018-06-19T07:42:45.631111"
     },
     
-  ]
+  ],
+  associaces: {
+    WMZ: {
+      name: 'Webmoney USD WMZ ',
+      code: '001'
+    },
+    WMR: {
+      name: 'Webmoney RUB WMR ',
+      code: '002'
+    },
+    WME: {
+      name: 'Webmoney EUR WME ',
+      code: '003'
+    },
+    WMB: {
+      name: 'Webmoney BYR WMB ',
+      code: '004'
+    },
+    WMG: {
+      name: 'Webmoney Gold WMG ',
+      code: '005'
+    },
+    WMU: {
+      name: 'Webmoney UAH WMU ',
+      code: '006'
+    },
+    WMC: {
+      name: 'Webmoney Credit WMC ',
+      code: '008'
+    },
+    WMX: {
+      name: 'Webmoney X WMX ',
+      code: '009'
+    },
+    WMK: {
+      name: 'Webmoney KZT WMK ',
+      code: '010'
+    },
+    YAMRUB: {
+      name: 'Yandex.Money RUB YAMRUB ',
+      code: '020'
+    },
+    RBKMRUB: {
+      name: 'RBKmoney RUB RBKMRUB ',
+      code: '030'
+    },
+    RBKMUSD: {
+      name: 'RBKmoney USD RBKMUSD ',
+      code: '031'
+    },
+    ESPBYR: {
+      name: 'EasyPay BYR ESPBYR ',
+      code: '040'
+    },
+    EBCUR: {
+      name: 'E-Bullion e-Currency EBCUR ',
+      code: '050'
+    },
+    EBG: {
+      name: 'E-Bullion Gold EBG ',
+      code: '051'
+    },
+    EDRM: {
+      name: 'EDram EDRM ',
+      code: '060'
+    },
+    FETUSD: {
+      name: 'Fethard USD FETUSD ',
+      code: '070'
+    },
+    AGUSD: {
+      name: 'AlterGold USD AGUSD ',
+      code: '080'
+    },
+    IMUAH: {
+      name: 'IMoney UAH IMUAH ',
+      code: '090'
+    },
+    INCRUB: {
+      name: 'INOCard RUB INCRUB ',
+      code: '100'
+    },
+    LRUSD: {
+      name: 'Liberty Reserve USD LRUSD ',
+      code: '110'
+    },
+    LREUR: {
+      name: 'Liberty Reserve EUR LREUR ',
+      code: '111'
+    },
+    LRG: {
+      name: 'Liberty Reserve Gold LRG ',
+      code: '112'
+    },
+    EMMDL: {
+      name: 'Emoney.md MDL EMMDL ',
+      code: '120'
+    },
+    MWRUB: {
+      name: 'Mobile Wallet RUB MWRUB ',
+      code: '130'
+    },
+    SKLUSD: {
+      name: 'Skrill USD SKLUSD ',
+      code: '140'
+    },
+    SKLEUR: {
+      name: 'Skrill EUR SKLEUR ',
+      code: '141'
+    },
+    MMLEUR: {
+      name: 'MoneyMail EUR MMLEUR ',
+      code: '150'
+    },
+    MMLRUB: {
+      name: 'MoneyMail RUB MMLRUB ',
+      code: '151'
+    },
+    MMLUSD: {
+      name: 'MoneyMail USD MMLUSD ',
+      code: '152'
+    },
+    PPAUD: {
+      name: 'PayPal AUD PPAUD ',
+      code: '160'
+    },
+    PPCAD: {
+      name: 'PayPal CAD PPCAD ',
+      code: '161'
+    },
+    PPEUR: {
+      name: 'PayPal EUR PPEUR ',
+      code: '162'
+    },
+    PPGBP: {
+      name: 'PayPal GBP PPGBP ',
+      code: '163'
+    },
+    PPUSD: {
+      name: 'PayPal USD PPUSD ',
+      code: '164'
+    },
+    PPRUB: {
+      name: 'PayPal RUB PPRUB ',
+      code: '165'
+    },
+    PXUSD: {
+      name: 'Pecunix USD PXUSD ',
+      code: '170'
+    },
+    UAMUSD: {
+      name: 'UA-Money USD UAMUSD ',
+      code: '180'
+    },
+    UMEUR: {
+      name: 'UkrMoney EUR UMEUR ',
+      code: '190'
+    },
+    UMRUB: {
+      name: 'UkrMoney RUB UMRUB ',
+      code: '191'
+    },
+    UMUAH: {
+      name: 'UkrMoney UAH UMUAH ',
+      code: '192'
+    },
+    UMUSD: {
+      name: 'UkrMoney USD UMUSD ',
+      code: '193'
+    },
+    VMUSD: {
+      name: 'V-Money USD VMUSD ',
+      code: '200'
+    },
+    WORUB: {
+      name: 'W1 RUB WORUB ',
+      code: '210'
+    },
+    WOUSD: {
+      name: 'W1 USD WOUSD ',
+      code: '211'
+    },
+    WOUAH: {
+      name: 'W1 UAH WOUAH ',
+      code: '212'
+    },
+    WOKZT: {
+      name: 'W1 KZT WOKZT ',
+      code: '213'
+    },
+    CGUSD: {
+      name: 'C-Gold USD CGUSD ',
+      code: '220'
+    },
+    CGEUR: {
+      name: 'C-Gold EUR CGEUR ',
+      code: '221'
+    },
+    DKEUR: {
+      name: 'DeltaKey EUR DKEUR ',
+      code: '230'
+    },
+    DKRUB: {
+      name: 'DeltaKey RUB DKRUB ',
+      code: '231'
+    },
+    DKUSD: {
+      name: 'DeltaKey USD DKUSD ',
+      code: '232'
+    },
+    ICQM: {
+      name: 'ICQMoney UNI ICQM ',
+      code: '233'
+    },
+    DKUAH: {
+      name: 'DeltaKey UAH DKUAH ',
+      code: '234'
+    },
+    PMUSD: {
+      name: 'Perfect Money USD PMUSD ',
+      code: '240'
+    },
+    PMEUR: {
+      name: 'Perfect Money EUR PMEUR ',
+      code: '241'
+    },
+    PMG: {
+      name: 'Perfect Money Gold PMG ',
+      code: '242'
+    },
+    PMBTC: {
+      name: 'Perfect Money BTC PMBTC ',
+      code: '243'
+    },
+    PMVUSD: {
+      name: 'Perfect Money Voucher USD PMVUSD ',
+      code: '244'
+    },
+    PAUSD: {
+      name: 'Payza USD PAUSD ',
+      code: '250'
+    },
+    PAEUR: {
+      name: 'Payza EUR PAEUR ',
+      code: '251'
+    },
+    NXUSD: {
+      name: 'Numox USD NXUSD ',
+      code: '260'
+    },
+    LQUSD: {
+      name: 'LiqPay USD LQUSD ',
+      code: '270'
+    },
+    LQUAH: {
+      name: 'LiqPay UAH LQUAH ',
+      code: '271'
+    },
+    LQRUB: {
+      name: 'LiqPay RUB LQRUB ',
+      code: '272'
+    },
+    LQEUR: {
+      name: 'LiqPay EUR LQEUR ',
+      code: '273'
+    },
+    ZPRUB: {
+      name: 'Z-Payment RUB ZPRUB ',
+      code: '280'
+    },
+    NNMUSD: {
+      name: 'NN-Money USD NNMUSD ',
+      code: '290'
+    },
+    CBEKR: {
+      name: 'Combats EKR CBEKR ',
+      code: '300'
+    },
+    STUSD: {
+      name: 'Star Trek USD STUSD ',
+      code: '310'
+    },
+    STRUB: {
+      name: 'Star Trek RUB STRUB ',
+      code: '311'
+    },
+    WCUSD: {
+      name: 'Webcreds USD WCUSD ',
+      code: '320'
+    },
+    WCRUB: {
+      name: 'Webcreds RUB WCRUB ',
+      code: '321'
+    },
+    WCEUR: {
+      name: 'Webcreds EUR WCEUR ',
+      code: '322'
+    },
+    WIREUSD: {
+      name: 'Wire USD WIREUSD ',
+      code: '330'
+    },
+    WIREEUR: {
+      name: 'Wire EUR WIREEUR ',
+      code: '331'
+    },
+    WIRERUB: {
+      name: 'Wire RUB WIRERUB ',
+      code: '332'
+    },
+    WIREUAH: {
+      name: 'Wire UAH WIREUAH ',
+      code: '333'
+    },
+    WIREKZT: {
+      name: 'Wire KZT WIREKZT ',
+      code: '334'
+    },
+    WIREGBP: {
+      name: 'Wire GBP WIREGBP ',
+      code: '335'
+    },
+    WIRELTL: {
+      name: 'Wire LTL WIRELTL ',
+      code: '336'
+    },
+    WIREBYR: {
+      name: 'Wire BYR WIREBYR ',
+      code: '337'
+    },
+    WIRETHB: {
+      name: 'Wire THB WIRETHB ',
+      code: '338'
+    },
+    WIREPLN: {
+      name: 'Wire PLN WIREPLN ',
+      code: '339'
+    },
+    WIRECNY: {
+      name: 'Wire CNY WIRECNY ',
+      code: '340'
+    },
+    WIREMYR: {
+      name: 'Wire MYR WIREMYR ',
+      code: '341'
+    },
+    WIRECZK: {
+      name: 'Wire CZK WIRECZK ',
+      code: '342'
+    },
+    CARDUSD: {
+      name: 'Card USD CARDUSD ',
+      code: '350'
+    },
+    CARDEUR: {
+      name: 'Card EUR CARDEUR ',
+      code: '351'
+    },
+    CARDRUB: {
+      name: 'Card RUB CARDRUB ',
+      code: '352'
+    },
+    CARDUAH: {
+      name: 'Card UAH CARDUAH ',
+      code: '353'
+    },
+    CARDKZT: {
+      name: 'Card KZT CARDKZT ',
+      code: '354'
+    },
+    CARDLTL: {
+      name: 'Card LTL CARDLTL ',
+      code: '355'
+    },
+    CARDGBP: {
+      name: 'Card GBP CARDGBP ',
+      code: '356'
+    },
+    CARDAMD: {
+      name: 'Card AMD CARDAMD ',
+      code: '357'
+    },
+    CARDBYN: {
+      name: 'Card BYN CARDBYN ',
+      code: '358'
+    },
+    CASHUSD: {
+      name: 'Cash USD CASHUSD ',
+      code: '370'
+    },
+    CASHEUR: {
+      name: 'Cash EUR CASHEUR ',
+      code: '371'
+    },
+    CASHRUB: {
+      name: 'Cash RUB CASHRUB ',
+      code: '372'
+    },
+    CASHUAH: {
+      name: 'Cash UAH CASHUAH ',
+      code: '373'
+    },
+    CASHKZT: {
+      name: 'Cash KZT CASHKZT ',
+      code: '374'
+    },
+    CASHLTL: {
+      name: 'Cash LTL CASHLTL ',
+      code: '375'
+    },
+    CASHGBP: {
+      name: 'Cash GBP CASHGBP ',
+      code: '376'
+    },
+    CASHCNY: {
+      name: 'Cash CNY CASHCNY ',
+      code: '377'
+    },
+    CASHAMD: {
+      name: 'Cash AMD CASHAMD ',
+      code: '378'
+    },
+    CASHTHB: {
+      name: 'Cash THB CASHTHB ',
+      code: '379'
+    },
+    PPTUSD: {
+      name: 'PayPlat USD PPTUSD ',
+      code: '380'
+    },
+    PPTRUB: {
+      name: 'PayPlat RUB PPTRUB ',
+      code: '381'
+    },
+    PPTEUR: {
+      name: 'PayPlat EUR PPTEUR ',
+      code: '382'
+    },
+    MNTRUB: {
+      name: 'Moneta RUB MNTRUB ',
+      code: '390'
+    },
+    NTLRUSD: {
+      name: 'Neteller USD NTLRUSD ',
+      code: '400'
+    },
+    NTLREUR: {
+      name: 'Neteller EUR NTLREUR ',
+      code: '401'
+    },
+    VTB24RUB: {
+      name: 'Telebank RUB TBRUB или VTB24RUB ',
+      code: '410'
+    },
+    VTB24USD: {
+      name: 'VTB24 USD VTB24USD ',
+      code: '411'
+    },
+    VTB24EUR: {
+      name: 'VTB24 EUR VTB24EUR ',
+      code: '412'
+    },
+    ACRUB: {
+      name: 'Alfa Bank RUB ACRUB ',
+      code: '420'
+    },
+    ACUAH: {
+      name: 'Alfa Bank UAH ACUAH ',
+      code: '421'
+    },
+    ACKZT: {
+      name: 'Alfa Bank KZT ACKZT ',
+      code: '422'
+    },
+    ACUSD: {
+      name: 'Alfa Bank USD ACUSD ',
+      code: '423'
+    },
+    ACEUR: {
+      name: 'Alfa Bank EUR ACEUR ',
+      code: '424'
+    },
+    PSBRUB: {
+      name: 'Promsvyazbank RUB PSBRUB ',
+      code: '430'
+    },
+    P24USD: {
+      name: 'Privat24 USD P24USD ',
+      code: '440'
+    },
+    P24UAH: {
+      name: 'Privat24 UAH P24UAH ',
+      code: '441'
+    },
+    P24EUR: {
+      name: 'Privat24 EUR P24EUR ',
+      code: '442'
+    },
+    P24RUB: {
+      name: 'Privat24 RUB P24RUB ',
+      code: '443'
+    },
+    GDPUSD: {
+      name: 'GlobalDigitalPay USD GDPUSD ',
+      code: '450'
+    },
+    GDPEUR: {
+      name: 'GlobalDigitalPay EUR GDPEUR ',
+      code: '451'
+    },
+    TMRUB: {
+      name: 'Telemoney RUB TMRUB ',
+      code: '460'
+    },
+    QWRUB: {
+      name: 'Qiwi RUB QWRUB ',
+      code: '470'
+    },
+    QWUSD: {
+      name: 'Qiwi USD QWUSD ',
+      code: '471'
+    },
+    QWEUR: {
+      name: 'Qiwi EUR QWEUR ',
+      code: '472'
+    },
+    QWKZT: {
+      name: 'Qiwi KZT QWKZT ',
+      code: '473'
+    },
+    QWVRUB: {
+      name: 'Qiwi Voucher RUB QWVRUB ',
+      code: '474'
+    },
+    OKUSD: {
+      name: 'OKPay USD OKUSD ',
+      code: '480'
+    },
+    OKRUB: {
+      name: 'OKPay RUB OKRUB ',
+      code: '481'
+    },
+    OKEUR: {
+      name: 'OKPay EUR OKEUR ',
+      code: '482'
+    },
+    OKGPB: {
+      name: 'OKPay GPB OKGPB ',
+      code: '483'
+    },
+    WUUSD: {
+      name: 'Western Union USD WUUSD ',
+      code: '490'
+    },
+    WURUB: {
+      name: 'Western Union RUB WURUB ',
+      code: '491'
+    },
+    WUEUR: {
+      name: 'Western Union EUR WUEUR ',
+      code: '492'
+    },
+    WUUAH: {
+      name: 'Western Union UAH WUUAH ',
+      code: '493'
+    },
+    MGUSD: {
+      name: 'Moneygram USD MGUSD ',
+      code: '500'
+    },
+    MGEUR: {
+      name: 'Moneygram EUR MGEUR ',
+      code: '501'
+    },
+    EGCUSD: {
+      name: 'EuroGoldCash USD EGCUSD ',
+      code: '510'
+    },
+    EGCEUR: {
+      name: 'EuroGoldCash EUR EGCEUR ',
+      code: '511'
+    },
+    SBERRUB: {
+      name: 'SberBank RUB SBERRUB ',
+      code: '520'
+    },
+    SBERKZT: {
+      name: 'SberBank KZT SBERKZT ',
+      code: '521'
+    },
+    SBERUSD: {
+      name: 'SberBank USD SBERUSD ',
+      code: '522'
+    },
+    SBERUAH: {
+      name: 'SberBank UAH SBERUAH ',
+      code: '523'
+    },
+    RUSSTRUB: {
+      name: 'RusStandard RUB RUSSTRUB ',
+      code: '530'
+    },
+    AVBRUB: {
+      name: 'Avangard RUB AVBRUB ',
+      code: '540'
+    },
+    RFBRUB: {
+      name: 'Raiffeisen RUB RFBRUB ',
+      code: '550'
+    },
+    RFBUAH: {
+      name: 'Raiffeisen UAH RFBUAH ',
+      code: '551'
+    },
+    TRBRUB: {
+      name: 'Trust RUB TRBRUB ',
+      code: '560'
+    },
+    SVBRUB: {
+      name: 'Svyaznoy RUB SVBRUB ',
+      code: '570'
+    },
+    CWMRUB: {
+      name: 'Cash4wm RUB CWMRUB ',
+      code: '580'
+    },
+    EPUSD: {
+      name: 'EgoPay USD EPUSD ',
+      code: '590'
+    },
+    EPEUR: {
+      name: 'EgoPay EUR EPEUR ',
+      code: '591'
+    },
+    STPUSD: {
+      name: 'SolidTrustPay USD STPUSD ',
+      code: '600'
+    },
+    STPEUR: {
+      name: 'SolidTrustPay EUR STPEUR ',
+      code: '601'
+    },
+    STPRUB: {
+      name: 'SolidTrustPay RUB STPRUB ',
+      code: '602'
+    },
+    PWUSD: {
+      name: 'PayWeb USD PWUSD ',
+      code: '610'
+    },
+    UKUSD: {
+      name: 'Ukash USD UKUSD ',
+      code: '620'
+    },
+    UKEUR: {
+      name: 'Ukash EUR UKEUR ',
+      code: '621'
+    },
+    PXMUSD: {
+      name: 'Paxum USD PXMUSD ',
+      code: '630'
+    },
+    PXMEUR: {
+      name: 'Paxum EUR PXMEUR ',
+      code: '631'
+    },
+    RPUSD: {
+      name: 'Redpass USD RPUSD ',
+      code: '640'
+    },
+    EPMUSD: {
+      name: 'Epayments USD EPMUSD ',
+      code: '650'
+    },
+    EPMEUR: {
+      name: 'ePayments EUR EPMEUR ',
+      code: '651'
+    },
+    BTC: {
+      name: 'BitCoin BTC ',
+      code: '660'
+    },
+    CUPCNY: {
+      name: 'ChinaUnionPay CNY CUPCNY ',
+      code: '670'
+    },
+    TCSBRUB: {
+      name: 'Tinkoff CS RUB TCSBRUB ',
+      code: '680'
+    },
+    TCSBUSD: {
+      name: 'Tinkoff CS USD TCSBUSD ',
+      code: '681'
+    },
+    TCSBEUR: {
+      name: 'Tinkoff CS EUR TCSBEUR ',
+      code: '682'
+    },
+    HCBRUB: {
+      name: 'Homecredit RUB HCBRUB ',
+      code: '690'
+    },
+    DTBUAH: {
+      name: 'DeltaBank UAH DTBUAH ',
+      code: '700'
+    },
+    DTBBYR: {
+      name: 'DeltaBank BYR DTBBYR ',
+      code: '701'
+    },
+    KKBKZT: {
+      name: 'Kazkombank KZT KKBKZT ',
+      code: '710'
+    },
+    KKBUSD: {
+      name: 'Kazkombank USD KKBUSD ',
+      code: '711'
+    },
+    CNTRUB: {
+      name: 'Contact RUB CNTRUB ',
+      code: '720'
+    },
+    CNTUSD: {
+      name: 'Contact USD CNTUSD ',
+      code: '721'
+    },
+    CNTEUR: {
+      name: 'Contact EUR CNTEUR ',
+      code: '722'
+    },
+    HDUSD: {
+      name: 'HD-Money USD HDUSD ',
+      code: '730'
+    },
+    USBUAH: {
+      name: 'UkrSibBank UAH USBUAH ',
+      code: '740'
+    },
+    PRUSD: {
+      name: 'Payeer USD PRUSD ',
+      code: '750'
+    },
+    PREUR: {
+      name: 'Payeer EUR PREUR ',
+      code: '751'
+    },
+    PRRUB: {
+      name: 'Payeer RUB PRRUB ',
+      code: '752'
+    },
+    USTMUSD: {
+      name: 'Unistream USD USTMUSD ',
+      code: '760'
+    },
+    USTMRUB: {
+      name: 'Unistream RUB USTMRUB ',
+      code: '761'
+    },
+    USTMEUR: {
+      name: 'Unistream EUR USTMEUR ',
+      code: '762'
+    },
+    NIXUSD: {
+      name: 'Nixmoney USD NIXUSD ',
+      code: '770'
+    },
+    NIXEUR: {
+      name: 'Nixmoney EUR NIXEUR ',
+      code: '771'
+    },
+    NIXBTC: {
+      name: 'Nixmoney BTC NIXBTC ',
+      code: '772'
+    },
+    NIXLTC: {
+      name: 'Nixmoney LTC NIXLTC ',
+      code: '773'
+    },
+    NIXCRT: {
+      name: 'Nixmoney CRT NIXCRT ',
+      code: '774'
+    },
+    NIXCLR: {
+      name: 'Nixmoney CLR NIXCLR ',
+      code: '775'
+    },
+    NIXXBL: {
+      name: 'Nixmoney XBL NIXXBL ',
+      code: '776'
+    },
+    NIXFTC: {
+      name: 'Nixmoney FTC NIXFTC ',
+      code: '777'
+    },
+    NIXMPPC: {
+      name: 'Nixmoney PPC NIXMPPC ',
+      code: '778'
+    },
+    NIXMSVC: {
+      name: 'Nixmoney SVC NIXMSVC ',
+      code: '779'
+    },
+    ANLKUSD: {
+      name: 'Anelik USD ANLKUSD ',
+      code: '790'
+    },
+    ANLKRUB: {
+      name: 'Anelik RUB ANLKRUB ',
+      code: '791'
+    },
+    ANLKEUR: {
+      name: 'Anelik EUR ANLKEUR ',
+      code: '792'
+    },
+    BTCEUSD: {
+      name: 'Btc-e code USD BTCEUSD ',
+      code: '801'
+    },
+    BTCERUB: {
+      name: 'Btc-e code RUB BTCERUB ',
+      code: '802'
+    },
+    BTCEBTC: {
+      name: 'Btc-e code BTC BTCEBTC ',
+      code: '803'
+    },
+    BTCELTC: {
+      name: 'Btc-e code LTC BTCELTC ',
+      code: '804'
+    },
+    BTCEEUR: {
+      name: 'Btc-e code EUR BTCEEUR ',
+      code: '805'
+    },
+    OTPBUAH: {
+      name: 'OTP bank UAH OTPBUAH ',
+      code: '810'
+    },
+    OTPBRUB: {
+      name: 'OTP bank RUB OTPBRUB ',
+      code: '811'
+    },
+    PMRUSD: {
+      name: 'Paymer USD PMRUSD ',
+      code: '820'
+    },
+    PMRRUB: {
+      name: 'Paymer RUB PMRRUB ',
+      code: '821'
+    },
+    PMRUAH: {
+      name: 'Paymer UAH PMRUAH ',
+      code: '822'
+    },
+    UNCBUAH: {
+      name: 'UniCredit UAH UNCBUAH ',
+      code: '830'
+    },
+    UNCBRUB: {
+      name: 'UniCredit RUB UNCBRUB ',
+      code: '831'
+    },
+    MOSBRUB: {
+      name: 'Bank of Moscow RUB MOSBRUB ',
+      code: '840'
+    },
+    GPBRUB: {
+      name: 'Gazprombank RUB GPBRUB ',
+      code: '850'
+    },
+    PMBBUAH: {
+      name: 'PUMB UAH PMBBUAH ',
+      code: '860'
+    },
+    ROSBRUB: {
+      name: 'Rosbank RUB ROSBRUB ',
+      code: '870'
+    },
+    VB24UAH: {
+      name: 'VAB 24 UAH VB24UAH ',
+      code: '880'
+    },
+    KUKRUB: {
+      name: 'Kukuruza  RUB KUKRUB ',
+      code: '890'
+    },
+    GCMTRUB: {
+      name: 'Golden Crown Money Transfers RUB GCMTRUB ',
+      code: '900'
+    },
+    GCMTUSD: {
+      name: 'Golden Crown Money Transfers USD GCMTUSD ',
+      code: '901'
+    },
+    GCMTEUR: {
+      name: 'Golden Crown Money Transfers EUR GCMTEUR ',
+      code: '902'
+    },
+    OPNBRUB: {
+      name: 'Openbank RUB OPNBRUB ',
+      code: '910'
+    },
+    LTC: {
+      name: 'LiteCoin LTC ',
+      code: '920'
+    },
+    TNCUSD: {
+      name: 'Technocash USD TNCUSD ',
+      code: '930'
+    },
+    UNVBUAH: {
+      name: 'Universal Bank UAH UNVBUAH ',
+      code: '940'
+    },
+    HLKBKZT: {
+      name: 'Halyk Bank KZT HLKBKZT ',
+      code: '950'
+    },
+    HLKBUSD: {
+      name: 'Halyk Bank USD HLKBUSD ',
+      code: '951'
+    },
+    CSH4PUSD: {
+      name: 'Cash4pay USD CSH4PUSD ',
+      code: '960'
+    },
+    OPAYUSD: {
+      name: 'OOOPay USD OPAYUSD ',
+      code: '970'
+    },
+    OPAYRUB: {
+      name: 'OOOPay RUB OPAYRUB ',
+      code: '971'
+    },
+    OPAYEUR: {
+      name: 'OOOPay EUR OPAYEUR ',
+      code: '972'
+    },
+    ECNEXUSD: {
+      name: 'eCoin.eu code ECNEXUSD ',
+      code: '980'
+    },
+    BTMUSD: {
+      name: 'Betrae Money USD BTMUSD ',
+      code: '990'
+    },
+    FPUSD: {
+      name: 'FasaPay USD FPUSD ',
+      code: '1000'
+    },
+    BBRUB: {
+      name: 'Binbank RUB BBRUB ',
+      code: '1010'
+    },
+    MTSBRUB: {
+      name: 'MTS Bank RUB MTSBRUB ',
+      code: '1020'
+    },
+    OCNBRUB: {
+      name: 'Ocean Bank RUB OCNBRUB ',
+      code: '1030'
+    },
+    CTYBRUB: {
+      name: 'Cyti Bank RUB CTYBRUB ',
+      code: '1040'
+    },
+    CCXUSD: {
+      name: 'C-cex.com USD CCXUSD ',
+      code: '1050'
+    },
+    CCXBTC: {
+      name: 'C-cex.com BTC CCXBTC ',
+      code: '1051'
+    },
+    EXMUSD: {
+      name: 'Exmo.com USD EXMUSD ',
+      code: '1060'
+    },
+    EXMRUB: {
+      name: 'Exmo.com RUB EXMRUB ',
+      code: '1061'
+    },
+    EXMEUR: {
+      name: 'Exmo.com EUR EXMEUR ',
+      code: '1062'
+    },
+    EXMUAH: {
+      name: 'Exmo.com UAH EXMUAH ',
+      code: '1063'
+    },
+    SBEUR: {
+      name: 'SwedBank EUR SBEUR ',
+      code: '1070'
+    },
+    BLRBBYR: {
+      name: 'Belarusbank BYR BLRBBYR ',
+      code: '1080'
+    },
+    BLRBUSD: {
+      name: 'Belarusbank USD BLRBUSD ',
+      code: '1081'
+    },
+    BLRBRUB: {
+      name: 'Belarusbank RUB BLRBRUB ',
+      code: '1082'
+    },
+    BLRBEUR: {
+      name: 'Belarusbank EUR BLRBEUR ',
+      code: '1083'
+    },
+    BTAKZT: {
+      name: 'BTA Bank BTAKZT ',
+      code: '1090'
+    },
+    SMSRUB: {
+      name: 'SMS RUB SMSRUB ',
+      code: '1100'
+    },
+    USBRUB: {
+      name: 'Uralsib Bank RUB USBRUB ',
+      code: '1110'
+    },
+    RNKBRUB: {
+      name: 'RNKB Bank RUB RNKBRUB ',
+      code: '1120'
+    },
+    RENBRUB: {
+      name: 'Renessans Bank RUB RENBRUB ',
+      code: '1130'
+    },
+    RSHBRUB: {
+      name: 'RSH Bank RUB RSHBRUB ',
+      code: '1140'
+    },
+    ADVCUSD: {
+      name: 'Advanced Cash USD ADVCUSD ',
+      code: '1150'
+    },
+    ADVCRUB: {
+      name: 'Advanced Cash RUB ADVCRUB ',
+      code: '1151'
+    },
+    ADVCEUR: {
+      name: 'Advanced Cash EUR ADVCEUR ',
+      code: '1152'
+    },
+    ADVCUAH: {
+      name: 'Advanced Cash UAH ADVCUAH ',
+      code: '1153'
+    },
+    VPUSD: {
+      name: 'VelesPay USD VPUSD ',
+      code: '1160'
+    },
+    VPEUR: {
+      name: 'VelesPay EUR VPEUR ',
+      code: '1161'
+    },
+    VPGPB: {
+      name: 'VelesPay GPB VPGPB ',
+      code: '1162'
+    },
+    VPRUB: {
+      name: 'VelesPay RUB VPRUB ',
+      code: '1163'
+    },
+    VPCNY: {
+      name: 'VelesPay CNY VPCNY ',
+      code: '1164'
+    },
+    VPVND: {
+      name: 'VelesPay VND VPVND ',
+      code: '1165'
+    },
+    VPINR: {
+      name: 'VelesPay INR VPINR ',
+      code: '1166'
+    },
+    VPIRR: {
+      name: 'VelesPay IRR VPIRR ',
+      code: '1167'
+    },
+    VPZAR: {
+      name: 'VelesPay ZAR VPZAR ',
+      code: '1168'
+    },
+    VPTHB: {
+      name: 'VelesPay THB VPTHB ',
+      code: '1169'
+    },
+    VPAUD: {
+      name: 'VelesPay AUD VPAUD ',
+      code: '1170'
+    },
+    VPCAD: {
+      name: 'VelesPay CAD VPCAD ',
+      code: '1171'
+    },
+    VPNZD: {
+      name: 'VelesPay NZD VPNZD ',
+      code: '1172'
+    },
+    VPHKD: {
+      name: 'VelesPay HKD VPHKD ',
+      code: '1173'
+    },
+    VPUAH: {
+      name: 'VelesPay UAH VPUAH ',
+      code: '1174'
+    },
+    VPBYR: {
+      name: 'VelesPay BYR VPBYR ',
+      code: '1175'
+    },
+    VPKZT: {
+      name: 'VelesPay KZT VPKZT ',
+      code: '1176'
+    },
+    VPKGS: {
+      name: 'VelesPay KGS VPKGS ',
+      code: '1177'
+    },
+    VPMXN: {
+      name: 'VelesPay MXN VPMXN ',
+      code: '1178'
+    },
+    VPVEF: {
+      name: 'VelesPay VEF VPVEF ',
+      code: '1179'
+    },
+    VPBRL: {
+      name: 'VelesPay BRL VPBRL ',
+      code: '1180'
+    },
+    VPCLP: {
+      name: 'VelesPay CLP VPCLP ',
+      code: '1181'
+    },
+    VPEGP: {
+      name: 'VelesPay EGP VPEGP ',
+      code: '1182'
+    },
+    VPTRY: {
+      name: 'VelesPay TRY VPTRY ',
+      code: '1183'
+    },
+    VPGEL: {
+      name: 'VelesPay GEL VPGEL ',
+      code: '1184'
+    },
+    VPIDR: {
+      name: 'VelesPay IDR VPIDR ',
+      code: '1185'
+    },
+    VPIQD: {
+      name: 'VelesPay IQD VPIQD ',
+      code: '1186'
+    },
+    VPILS: {
+      name: 'VelesPay ILS VPILS ',
+      code: '1187'
+    },
+    VPKRW: {
+      name: 'VelesPay KRW VPKRW ',
+      code: '1188'
+    },
+    VPMDL: {
+      name: 'VelesPay MDL VPMDL ',
+      code: '1189'
+    },
+    VPPLN: {
+      name: 'VelesPay PLN VPPLN ',
+      code: '1190'
+    },
+    VPAED: {
+      name: 'VelesPay AED VPAED ',
+      code: '1191'
+    },
+    VPCHF: {
+      name: 'VelesPay CHF VPCHF ',
+      code: '1192'
+    },
+    VPHRK: {
+      name: 'VelesPay HRK VPHRK ',
+      code: '1193'
+    },
+    VPCZK: {
+      name: 'VelesPay CZK VPCZK ',
+      code: '1194'
+    },
+    VPDKK: {
+      name: 'VelesPay DKK VPDKK ',
+      code: '1195'
+    },
+    VPHUF: {
+      name: 'VelesPay HUF VPHUF ',
+      code: '1196'
+    },
+    VPJPY: {
+      name: 'VelesPay JPY VPJPY ',
+      code: '1197'
+    },
+    VPNOK: {
+      name: 'VelesPay NOK VPNOK ',
+      code: '1198'
+    },
+    VPSEK: {
+      name: 'VelesPay SEK VPSEK ',
+      code: '1199'
+    },
+    LPUSD: {
+      name: 'LavaPay USD LPUSD ',
+      code: '1200'
+    },
+    LPRUB: {
+      name: 'LavaPay RUB LPRUB ',
+      code: '1201'
+    },
+    LPEUR: {
+      name: 'LavaPay EUR LPEUR ',
+      code: '1202'
+    },
+    LPUAH: {
+      name: 'LavaPay UAH LPUAH ',
+      code: '1203'
+    },
+    LPGBP: {
+      name: 'LavaPay GBP LPGBP ',
+      code: '1204'
+    },
+    LPCNY: {
+      name: 'LavaPay CNY LPCNY ',
+      code: '1205'
+    },
+    LPCAD: {
+      name: 'LavaPay CAD LPCAD ',
+      code: '1206'
+    },
+    LPAUD: {
+      name: 'LavaPay AUD LPAUD ',
+      code: '1207'
+    },
+    HMEUR: {
+      name: 'HelixMoney EUR HMEUR ',
+      code: '1210'
+    },
+    HMRUB: {
+      name: 'HelixMoney RUB HMRUB ',
+      code: '1211'
+    },
+    HMUAH: {
+      name: 'HelixMoney UAH HMUAH ',
+      code: '1212'
+    },
+    HMUSD: {
+      name: 'HelixMoney USD HMUSD ',
+      code: '1213'
+    },
+    WTUSD: {
+      name: 'Webtransfer USD WTUSD ',
+      code: '1220'
+    },
+    WTUSD2: {
+      name: 'Webtransfer USD ❤ WTUSD2 ',
+      code: '1221'
+    },
+    WTUSD1: {
+      name: 'Webtransfer USD1 WTUSD1 ',
+      code: '1222'
+    },
+    WTCCREDS: {
+      name: 'Webtransfer C-CREDS WTCCREDS ',
+      code: '1223'
+    },
+    WTPCREDS: {
+      name: 'Webtransfer P-CREDS WTPCREDS ',
+      code: '1224'
+    },
+    WTCARD: {
+      name: 'Webtransfer Card WTCARD ',
+      code: '1225'
+    },
+    WTDEBIT: {
+      name: 'Webtransfer DEBIT WTDEBIT ',
+      code: '1226'
+    },
+    FRTBKZT: {
+      name: 'ForteBank KZT FRTBKZT ',
+      code: '1230'
+    },
+    FRTBUSD: {
+      name: 'ForteBank USD FRTBUSD ',
+      code: '1231'
+    },
+    DMRBUSD: {
+      name: 'DemirBank USD DMRBUSD ',
+      code: '1240'
+    },
+    OSDBUAH: {
+      name: 'Oschadbank UAH OSDBUAH ',
+      code: '1250'
+    },
+    EDR: {
+      name: 'E-DINAR EDR ',
+      code: '1260'
+    },
+    EDRC: {
+      name: 'EDRCoin EDRC ',
+      code: '1261'
+    },
+    LVPUSD: {
+      name: 'LvPay USD LVPUSD ',
+      code: '1270'
+    },
+    LVPEUR: {
+      name: 'LvPay EUR LVPEUR ',
+      code: '1271'
+    },
+    LVPRUB: {
+      name: 'LvPay RUB LVPRUB ',
+      code: '1272'
+    },
+    LVPUAH: {
+      name: 'LvPay UAH LVPUAH ',
+      code: '1273'
+    },
+    LVPBYR: {
+      name: 'LvPay BYR LVPBYR ',
+      code: '1274'
+    },
+    LVPGBP: {
+      name: 'LvPay GBP LVPGBP ',
+      code: '1275'
+    },
+    LVPCNY: {
+      name: 'LvPay CNY LVPCNY ',
+      code: '1276'
+    },
+    LVPCAD: {
+      name: 'LvPay CAD LVPCAD ',
+      code: '1277'
+    },
+    LVPAUD: {
+      name: 'LvPay AUD LVPAUD ',
+      code: '1278'
+    },
+    OCNEUR: {
+      name: 'OneCoin EUR OCNEUR ',
+      code: '1280'
+    },
+    ATNBKZT: {
+      name: 'Astana Bank ATNBKZT ',
+      code: '1290'
+    },
+    AKBBRUB: {
+      name: 'AcBarsBank RUB AKBBRUB ',
+      code: '1300'
+    },
+    RMTFUSD: {
+      name: 'Ria Financial USD RMTFUSD ',
+      code: '1340'
+    },
+    RMTFEUR: {
+      name: 'Ria Financial EUR RMTFEUR ',
+      code: '1341'
+    },
+    EPSUSD: {
+      name: 'EPESE USD EPSUSD ',
+      code: '1350'
+    },
+    CPLTUSD: {
+      name: 'Capitalist USD CPLTUSD ',
+      code: '1360'
+    },
+    CPTLEUR: {
+      name: 'Capitalist EUR CPTLEUR ',
+      code: '1361'
+    },
+    CPTLRUB: {
+      name: 'Capitalist RUB CPTLRUB ',
+      code: '1362'
+    },
+    CRPTCHUSD: {
+      name: 'Cryptocheck USD CRPTCHUSD ',
+      code: '1370'
+    },
+    LVCUSD: {
+      name: 'Livecoin code USD LVCUSD ',
+      code: '1380'
+    },
+    LVCRUB: {
+      name: 'Livecoin code RUB LVCRUB ',
+      code: '1381'
+    },
+    LVCEUR: {
+      name: 'Livecoin code EUR LVCEUR ',
+      code: '1382'
+    },
+    WSMUZS: {
+      name: 'Websum UZS WSMUZS ',
+      code: '1390'
+    },
+    MPLUSD: {
+      name: 'MoneyPolo USD MPLUSD ',
+      code: '1400'
+    },
+    MPLEUR: {
+      name: 'MoneyPolo EUR MPLEUR ',
+      code: '1401'
+    },
+    MPLRUB: {
+      name: 'MoneyPolo RUB MPLRUB ',
+      code: '1402'
+    },
+    ATFBKZT: {
+      name: 'ATF Bank KZT ATFBKZT ',
+      code: '1410'
+    },
+    ATFBUSD: {
+      name: 'ATF Bank USD ATFBUSD ',
+      code: '1411'
+    },
+    EURBKZT: {
+      name: 'Eurasian Bank KZT EURBKZT ',
+      code: '1420'
+    },
+    EURBUSD: {
+      name: 'Eurasian Bank USD EURBUSD ',
+      code: '1421'
+    },
+    ALPCNY: {
+      name: 'Alipay CNY ALPCNY ',
+      code: '1430'
+    },
+    ACCIUSD: {
+      name: 'Alfa Bank USD cash-in ACCIUSD ',
+      code: '1440'
+    },
+    ACCIRUB: {
+      name: 'Alfa Bank RUB cash-in ACCIRUB ',
+      code: '1441'
+    },
+    ACCIEUR: {
+      name: 'Alfa Bank EUR cash-in ACCIEUR ',
+      code: '1442'
+    },
+    RUSSTCIRUB: {
+      name: 'RusStandard RUB Cash-in RUSSTCIRUB ',
+      code: '1450'
+    },
+    WMOUSD: {
+      name: 'W Money USD WMOUSD ',
+      code: '1460'
+    },
+    WMORUB: {
+      name: 'W Money RUB WMORUB ',
+      code: '1461'
+    },
+    WMOUAH: {
+      name: 'W Money UAH WMOUAH ',
+      code: '1462'
+    },
+    REYUSD: {
+      name: 'Reydex USD REYUSD ',
+      code: '1470'
+    },
+    REYRUB: {
+      name: 'Reydex RUB REYRUB ',
+      code: '1471'
+    },
+    TOCHRUB: {
+      name: 'Toch Bank RUB TOCHRUB ',
+      code: '1480'
+    },
+    ABCBCNY: {
+      name: 'Agricultural Bank of China CNY ABCBCNY ',
+      code: '1490'
+    },
+    BCBCNY: {
+      name: 'Bank of China CNY BCBCNY ',
+      code: '1500'
+    },
+    BCBUSD: {
+      name: 'Bank of China USD BCBUSD ',
+      code: '1501'
+    },
+    WCTCNY: {
+      name: 'WeChat CNY WCTCNY ',
+      code: '1510'
+    },
+    CSTRMTUSD: {
+      name: 'Coinstar (Sigue) USD CSTRMTUSD ',
+      code: '1520'
+    },
+    CSTRMTEUR: {
+      name: 'Coinstar (Sigue) EUR CSTRMTEUR ',
+      code: '1521'
+    },
+    CCBCNY: {
+      name: 'China Construction Bank CNY CCBCNY ',
+      code: '1530'
+    },
+    ICBCCNY: {
+      name: 'Industrial and Commercial Bank of China CNY ICBCCNY ',
+      code: '1540'
+    },
+    CMBCNY: {
+      name: 'China Merchants Bank CNY CMBCNY ',
+      code: '1550'
+    },
+    PNRUSD: {
+      name: 'Payoneer USD PNRUSD ',
+      code: '1560'
+    },
+    TTRUSD: {
+      name: 'Tether USD TTRUSD ',
+      code: '1570'
+    },
+    RCNUSD: {
+      name: 'Rcoin USD RCNUSD ',
+      code: '1590'
+    },
+    RCNCRPT: {
+      name: 'Rcoin CRPT RCNCRPT ',
+      code: '1591'
+    },
+    EDC: {
+      name: 'E-DINAR COIN EDC ',
+      code: '1600'
+    },
+    BTPUSD: {
+      name: 'Bitport USD BTPUSD ',
+      code: '1620'
+    },
+    BTPEUR: {
+      name: 'Bitport EUR BTPEUR ',
+      code: '1621'
+    },
+    BTPRUB: {
+      name: 'Bitport RUB BTPRUB ',
+      code: '1622'
+    },
+    BTPUAH: {
+      name: 'Bitport UAH BTPUAH ',
+      code: '1623'
+    },
+    BTPGBP: {
+      name: 'Bitport GBP BTPGBP ',
+      code: '1624'
+    },
+    BTPCNY: {
+      name: 'Bitport CNY BTPCNY ',
+      code: '1626'
+    },
+    PIN: {
+      name: 'Piron PIN ',
+      code: '1630'
+    },
+    SMUSD: {
+      name: 'Simple Money USD SMUSD ',
+      code: '1640'
+    },
+    SMRUB: {
+      name: 'Simple Money RUB SMRUB ',
+      code: '1641'
+    },
+    SMUAH: {
+      name: 'Simple Money UAH SMUAH ',
+      code: '1642'
+    },
+    SMEUR: {
+      name: 'Simple Money EUR SMEUR ',
+      code: '1643'
+    },
+    ETH: {
+      name: 'Ethereum ETH ',
+      code: '1650'
+    },
+    HBRUB: {
+      name: 'HandyBank RUB HBRUB ',
+      code: '1660'
+    },
+    WSUAH: {
+      name: 'Welsend UAH WSUAH ',
+      code: '1670'
+    },
+    WSUSD: {
+      name: 'Welsend USD WSUSD ',
+      code: '1671'
+    },
+    WSEUR: {
+      name: 'Welsend EUR WSEUR ',
+      code: '1672'
+    },
+    WSRUB: {
+      name: 'Welsend RUB WSRUB ',
+      code: '1673'
+    },
+    XMR: {
+      name: 'Monero XMR ',
+      code: '1680'
+    },
+    REP: {
+      name: 'Augur REP ',
+      code: '1690'
+    },
+    MXBTC: {
+      name: 'Mercatox BTC MXBTC ',
+      code: '1700'
+    },
+    BCN: {
+      name: 'Bytecoin BCN ',
+      code: '1710'
+    },
+    CLAM: {
+      name: 'Clams CLAM ',
+      code: '1720'
+    },
+    DASH: {
+      name: 'Dash DASH ',
+      code: '1730'
+    },
+    LSK: {
+      name: 'Lisk LSK ',
+      code: '1740'
+    },
+    NMC: {
+      name: 'Namecoin NMC ',
+      code: '1750'
+    },
+    PPC: {
+      name: 'Peercoin PPC ',
+      code: '1760'
+    },
+    DOGE: {
+      name: 'Dogecoin DOGE ',
+      code: '1770'
+    },
+    ZEC: {
+      name: 'Zcash ZEC ',
+      code: '1780'
+    },
+    BCIIDR: {
+      name: 'Bitcoin.co.id IDR BCIIDR ',
+      code: '1790'
+    },
+    ECNUSD: {
+      name: 'eCoin.cc USD ECNUSD ',
+      code: '1800'
+    },
+    ECNEUR: {
+      name: 'eCoin.cc EUR ECNEUR ',
+      code: '1801'
+    },
+    PSRUSD: {
+      name: 'PaySera USD PSRUSD ',
+      code: '1810'
+    },
+    PSREUR: {
+      name: 'PaySera EUR PSREUR ',
+      code: '1811'
+    },
+    DPUSD: {
+      name: 'DotPay USD DPUSD ',
+      code: '1820'
+    },
+    DPBTC: {
+      name: 'DotPay BTC DPBTC ',
+      code: '1821'
+    },
+    ETC: {
+      name: 'Ethereum Classic ETC ',
+      code: '1830'
+    },
+    CNMTEUR: {
+      name: 'Coinmate EUR CNMTEUR ',
+      code: '1840'
+    },
+    EKZT: {
+      name: 'EKZT KZT EKZT ',
+      code: '1850'
+    },
+    EMC: {
+      name: 'Emercoin EMC ',
+      code: '1860'
+    },
+    EPAYUSD: {
+      name: 'Epay USD EPAYUSD ',
+      code: '1870'
+    },
+    FLPNCAD: {
+      name: 'Flexepin CAD FLPNCAD ',
+      code: '1880'
+    },
+    HCSBKZT: {
+      name: 'Zhilstroysberbank KZT HCSBKZT ',
+      code: '1890'
+    },
+    BTCUPUSD: {
+      name: 'BTC-UP USD BTCUPUSD ',
+      code: '1900'
+    },
+    BTCUPEUR: {
+      name: 'BTC-UP EUR BTCUPEUR ',
+      code: '1901'
+    },
+    BTCUPRUB: {
+      name: 'BTC-UP RUB BTCUPRUB ',
+      code: '1902'
+    },
+    BTCUPCNY: {
+      name: 'BTC-UP CNY BTCUPCNY ',
+      code: '1903'
+    },
+    BTCUPBTC: {
+      name: 'BTC-UP BTC BTCUPBTC ',
+      code: '1904'
+    },
+    BTCUPLTC: {
+      name: 'BTC-UP LTC BTCUPLTC ',
+      code: '1905'
+    },
+    BTCUPUAH: {
+      name: 'BTC-UP UAH BTCUPUAH ',
+      code: '1906'
+    },
+    BTCUPEDR: {
+      name: 'BTC-UP EDR BTCUPEDR ',
+      code: '1907'
+    },
+    BTCUPEMC: {
+      name: 'BTC-UP EMC BTCUPEMC ',
+      code: '1908'
+    },
+    BTCUPETH: {
+      name: 'BTC-UP ETH BTCUPETH ',
+      code: '1909'
+    },
+    BTCUPGBP: {
+      name: 'BTC-UP GBP BTCUPGBP ',
+      code: '1910'
+    },
+    BTCUPHKD: {
+      name: 'BTC-UP HKD BTCUPHKD ',
+      code: '1911'
+    },
+    PVTMEUR: {
+      name: 'PrivatMoney EUR PVTMEUR ',
+      code: '1920'
+    },
+    PVTMUAH: {
+      name: 'PrivatMoney UAH PVTMUAH ',
+      code: '1921'
+    },
+    PVTMUSD: {
+      name: 'PrivatMoney USD PVTMUSD ',
+      code: '1922'
+    },
+    SBRKBUSD: {
+      name: 'Sberbank Kolibri USD SBRKBUSD ',
+      code: '1930'
+    },
+    ECPZRUB: {
+      name: 'Ecopayz RUB ECPZRUB ',
+      code: '1940'
+    },
+    ECPZEUR: {
+      name: 'Ecopayz EUR ECPZEUR ',
+      code: '1941'
+    },
+    ECPZUSD: {
+      name: 'Ecopayz USD ECPZUSD ',
+      code: '1942'
+    }
+  }
 }

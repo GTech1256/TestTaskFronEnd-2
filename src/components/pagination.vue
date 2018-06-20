@@ -130,6 +130,7 @@ p:hover
   cursor default
   color: darkenColor
   border-color: darkenColor
+  border-width: 3px
 
 
 .div__container_pagination

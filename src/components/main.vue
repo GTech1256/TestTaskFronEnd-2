@@ -35,20 +35,28 @@ div(class="panel")
 <script>
 import MarketRates from './tabs/MarketRates';
 import Localbitcoins from './tabs/Localbitcoins';
+import ExchangerRates from './tabs/ExchangerRates';
+
 import smartSelect from './smartSelect';
 import tableResponse from './tableResponse';
 import message from './message';
 
-const tabs = [{
-  id: 0,
-  name: { eng: 'MarketRates', rus: 'Валюты' },
-  value: MarketRates,
-},
-{
-  id: 1,
-  name: { eng: 'Localbitcoins', rus: 'Переводы' },
-  value: Localbitcoins,
-},
+const tabs = [
+  {
+    id: 0,
+    name: { eng: 'MarketRates', rus: 'Рыночные цены' },
+    value: MarketRates,
+  },
+  {
+    id: 1,
+    name: { eng: 'Localbitcoins', rus: 'Локальные биткойны' },
+    value: Localbitcoins,
+  },
+  {
+    id: 2,
+    name: { eng: 'ExchangerRates', rus: 'Курсы валют' },
+    value: ExchangerRates,
+  },
 ];
 
 export default {
