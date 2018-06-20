@@ -19,7 +19,6 @@
         h1 {{params.value}}
       .items__item_input( @click="$emit('pickData', { name: params.name, items: params.data })" )
         p {{ picked[params.name] || 'Выбрать значение' }}
-        p {{ picked }}
     .btn(@click="getRates")
       p Получить данные
 
