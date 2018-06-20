@@ -13,7 +13,7 @@
     table(class="table-fill")
       thead
         tr
-          th(class="text-left" v-for="headerText in tables[0].headers")
+          th(class="text-left" v-for="headerText in tableType.headers")
             p {{ headerText }}
 
       tbody(class="table-hover")
@@ -39,7 +39,7 @@ export default {
         headers: ['Прямой курс', 'Обратный курс', 'Метка времени'],
       }, {
         name: 'ads',
-        headers: ['Нормер', 'Цена', 'Способ оплаты', 'Пользователь', '...'],
+        headers: ['id', 'adId', 'createdAt', 'tempPrice', 'currency', 'lat', 'lon', 'city', 'countryCode', 'locationString', 'tradeType', 'onlineProvider', 'bankName', 'maxAmount', 'minAmount', 'paymentWindowMinutes', 'userName', 'appearedAt', 'liveAt'],
       },
       ],
       pageNumber: 1,
@@ -60,6 +60,16 @@ export default {
     },
   },
   computed: {
+    tableType() {
+      const lngData = Object.keys(this.data[0]).length;
+      const indexTable = lngData === 2 ? 0 : 1;
+      const headers = this.tables[indexTable].headers;
+      // console.log(this.data[0]);
+      return {
+        headers,
+        indexTable,
+      };
+    },
     paginatedItems() {
       const currentPage = this.pageNumber;// 1
       const itemOnPage = this.itemOnPage;// 11
@@ -74,18 +84,22 @@ export default {
       return newItems;
     },
     normalizeItems() {
-      let data = this.data;
+      if (this.tableType.indexTable === 0) {
+        let data = this.data;
+        // console.log(data);
+        data = data.map((item) => {
+          const t = new Date(item.ts);
 
-      data = data.map((item) => {
-        const t = new Date(item.ts);
+          /* data to 23:59:59-31/12/18. */
+          // потом паттерн времени сделаю
 
-        /* data to 23:59:59-31/12/18. */
-        // потом паттерн времени сделаю
-
-        const textDate = `${t.getHours()}:${t.getMinutes()}:${t.getMinutes()}-${t.getDate()}/${t.getMonth()}/${t.getFullYear()}`;
-        return { val: item.val, bckval: 1 / item.val, ts: textDate };
-      });
-      return data;
+          const textDate = `${t.getHours()}:${t.getMinutes()}:${t.getMinutes()}-${t.getDate()}/${t.getMonth()}/${t.getFullYear()}`;
+          return { val: item.val, bckval: 1 / item.val, ts: textDate };
+        });
+        // console.log(data);
+        return data;
+      }
+      return this.data;
     },
   },
 };

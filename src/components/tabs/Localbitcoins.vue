@@ -30,15 +30,16 @@ import axios from 'axios';
 import localDB from '../../../static/localDB';
 
 const mainLink = 'https://koshelek.ru/api';
+let oldCountry;
 
 const apiEnum = {
-  cities: () => (`${mainLink}/ads/locations/cities`),
-  countryCodes: () => (`${mainLink}/ads/locations/countryCodes`),
+  cities: () => (`${mainLink}/localbitcoins/cities`),
+  countryCodes: () => (`${mainLink}/localbitcoins/countryCodes`),
   dataByDateBuyOnline: (date, isBuy, isOnline) => {
-    let onlineText = isOnline === undefined || isOnline === null ? '' : isOnline ? '/online/' : '/local/';
+    let onlineText = isOnline === undefined || isOnline === null ? '' : isOnline ? 'online/' : 'local/';
     const buyText = isBuy === undefined || isBuy === null ? '' : isBuy ? 'buy/' : 'sell/';
     if (buyText === '') { onlineText = ''; }
-    return `${mainLink}/ads/${buyText}${onlineText}${date}`;
+    return `${mainLink}/localbitcoins/${buyText}${onlineText}${date}`;
   },
 };
 
@@ -62,12 +63,6 @@ export default {
           name: 'isOnline',
           data: ['Онлайн', 'Локально'],
         },
-        /* currency: {
-          value: 'Валюта:',
-          name: 'currency',
-          data: [],
-          picked: '',
-        }, */
         country: {
           value: 'Страна:',
           name: 'country',
@@ -111,6 +106,10 @@ export default {
           this.$emit('showMsg', { type: 'warning', text: 'Не правильный формат даты' });
           return;
         }
+        if (date.getTime() === 0) {
+          this.$emit('showMsg', { type: 'warning', text: 'Время не указано' });
+          return;
+        }
         date = date.toISOString();
         // нормализация Покупка/Продажа
         let isBuy = this.picked.isBuy;
@@ -145,18 +144,24 @@ export default {
   },
   watch: {
     picked: {
-      handler(oldV, { country }) {
-        const countrys = this.selects.country.data;
-        const countryCode = country;
+      handler({ country }) {
+        if (oldCountry !== country) {
+          // set old Countrt
+          // this.$emit('itemPicked', { name: 'pairs' });
 
-        let cities = [];
+          const countrys = this.selects.country.data;
+          const countryCode = country;
 
-        if (typeof countryCode === 'string') {
-          cities = countrys.filter(val => val.countryCode === countryCode);
-          cities = cities.map(item => item.cities);
+          let cities = [];
+
+          if (typeof countryCode === 'string') {
+            cities = countrys.filter(val => val.countryCode === countryCode);
+            cities = cities.map(item => item.cities);
+          }
+
+          this.selects.cities.data = cities;
+          oldCountry = country;
         }
-
-        this.selects.cities.data = cities;
       },
       deep: true,
     },

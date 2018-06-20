@@ -18,7 +18,7 @@
       label(:for="params.name" @click="this.$emit('pickData',['тест','da'])" )
         h1 {{params.value}}
       .items__item_input( @click="$emit('pickData', { name: params.name, items: params.data })" )
-        p {{ picked[params.name] || 'Выбрать значение' }}
+        p {{ textInputs(params) }}
     .btn(@click="getRates")
       p Получить данные
 
@@ -107,21 +107,15 @@ export default {
     },
     pairsData(data) {
       this.selects[0].data = data;
-      console.log('new pairs', data.length);
+      // console.log('new pairs', data.length);
     },
     marketsData(data) {
       this.selects[1].data = data;
-
-      /*
-      if (!this.picked.markets) {
-        return;
-      }
-      */
     },
   },
   async created() {
     try {
-      console.log(pairsLink);
+      // console.log(pairsLink);
       const pairsResponse = await axios.get(pairsLink);
       let { data } = pairsResponse;
       // to normalize name
@@ -141,6 +135,11 @@ export default {
     }
   },
   methods: {
+    textInputs(params) {
+      return this.picked[params.name] === undefined || this.picked[params.name] === null ?
+        params.data && params.data[0] ? 'Выбрать значение' :
+          'Нет значений для выбранной биржи' : this.picked[params.name];
+    },
     async getRates() {
       try {
         let pair = this.picked.pairs;
@@ -158,7 +157,7 @@ export default {
           markets = markets.replace('/', '%2');
           link += `/${markets}`;
         }
-        console.log(link);
+        // console.log(link);
         const response = await axios.get(link);
         if (response.data.length === 0) {
           this.$emit('showMsg', { type: 'info', text: 'По вашему запросу нечего не найдено' });
@@ -177,7 +176,7 @@ export default {
         const newName = associaces[item] || item;
         return newName;
       });
-      console.log(newArr);
+      // console.log(newArr);
       return newArr;
     },
     async loadPairsByMarket() {
@@ -188,7 +187,7 @@ export default {
       markets = markets.replace('/', '%2');
       const link = `${pairsLink}/${markets}`;
 
-      console.log(link);
+      // console.log(link);
       const response = await axios.get(link);
       this.pairsData = response.data;
     },
@@ -215,11 +214,32 @@ lightGreyColor= #d9d9d9
 
 .items__params_by_pairs_input
   max-width 30%
+  width 30px
+  height 30px
+  margin auto 0
 
 
 h1
   font-size:1.5rem
 
+
+.items__params_checkbox
+  min-width 200px
+
+@media (max-width: 400px)
+  .items__params
+    font-size .7rem
+
+  .items__params_checkbox
+    min-width 140px
+
+  .items__params_by_pairs_text
+    width 30%
+
+  .items__params_by_pairs_input
+    max-width 30%
+    width 15px
+    height 15px
 
 </style>
 

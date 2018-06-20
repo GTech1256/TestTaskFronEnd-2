@@ -12,10 +12,10 @@ div(class="panel")
           :checked="tab.name.eng === tabs[currentTabIndex].name.eng"
         )
         label(:for="tab.name.eng" @click="currentTabIndex = tab.id" class="panel__tabs_label")
-          p(@click="tableData=[]") {{tab.name.rus}}
-    h1 * - Обязательно
+          p(@click="tableData=[]") {{tab.name.eng}}
+    h1(id="message") * - Обязательно
     transition(name="fade")
-      message(:message="message" v-if="showMessage")
+      message( :message="message" v-if="showMessage")
     keep-alive
       transition(name="fade" mode="out-in")
         component(
@@ -45,17 +45,17 @@ import message from './message';
 const tabs = [
   {
     id: 0,
-    name: { eng: 'MarketRates', rus: 'Рыночные цены' },
+    name: { eng: 'Rates p2p/OTC', rus: 'P2P/OTC' },
     value: MarketRates,
   },
   {
     id: 1,
-    name: { eng: 'Localbitcoins', rus: 'Локальные биткойны' },
+    name: { eng: 'Rates Crypto Exchanges', rus: 'Биржи' },
     value: Localbitcoins,
   },
   {
     id: 2,
-    name: { eng: 'ExchangerRates', rus: 'Курсы валют' },
+    name: { eng: 'Rates Exchange points', rus: 'Обменники' },
     value: ExchangerRates,
   },
 ];
@@ -95,6 +95,7 @@ export default {
       setTimeout(() => {
         vm.showMessage = false;
       }, 4000);
+      location.href = '#message';
     },
     showTable(event) {
       this.tableData = event;
@@ -172,14 +173,15 @@ input:checked + .panel__tabs_label
 
 .panel__content_itm
   margin: 5px;
+  margin-bottom 50px
 
 
 .items__item
   display:flex
-  width:40%
+  width:60%
   justify-content: space-between
   border-bottom: 1px hidden grey
-  margin-bottom:10px
+  margin-bottom:20px
   padding-bottom: 10px
   align-items: center;
 
@@ -295,7 +297,10 @@ vue transition name="currentTabIndex === 0 ? 'component-left':'component-right'"
   .panel__tabs_label
     font-size 1rem
 
-@media (max-width: 350px)
+  .items__item:hover
+    background: none
+
+@media (max-width: 400px)
   .panel
     margin 1px
 
