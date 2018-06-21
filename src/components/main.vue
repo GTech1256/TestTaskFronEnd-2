@@ -252,7 +252,7 @@ input:checked + .panel__tabs_label
     rgba(255,255,255,1) 100%
   )
   border-bottom-style: solid
-  margin-bottom:9px
+  margin-bottom:19px
 
 .items__item:focus
   border-bottom-style: solid
