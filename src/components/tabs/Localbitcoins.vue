@@ -185,8 +185,8 @@ export default {
           link += `&top=${this.numItemsFromBack}`;
         }
         // добавление доп полей ?countryCode=10&city=10&currency=10&top=10
-        // console.log();
-        console.log(link);
+        // console.log(link);
+
         const response = await axios.get(link);
         if (response.data.length === 0) {
           this.$emit('showMsg', { type: 'info', text: 'По вашему запросу нечего не найдено' });

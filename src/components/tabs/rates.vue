@@ -144,16 +144,9 @@ export default {
     },
     pairsData(data) {
       this.selects[0].data = data;
-      // console.log('new pairs', data.length);
     },
     exchangersData(data) {
       this.selects[1].data = data;
-
-      /*
-      if (!this.picked.exchangers) {
-        return;
-      }
-      */
     },
   },
   async created() {
@@ -211,7 +204,7 @@ export default {
         let dateFrom = new Date(this.dateFrom);
         let dateTo = new Date(this.dateTo);
         const didValidDateResult = didValidDate(dateFrom, dateTo);
-        if (didValidDateResult.status) {
+        if (!didValidDateResult.status) {
           this.$emit('showMsg', { type: 'info', text: didValidDateResult.message });
         } else {
           dateFrom = dateFrom.toISOString();
@@ -222,7 +215,7 @@ export default {
           dateTo = dateTo.replace('/', '%2');
           link += `&dateTo=${dateTo}`;
         }
-        console.log(link);
+        // console.log(link);
 
         // Set response
         const response = await axios.get(link);

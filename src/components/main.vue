@@ -113,7 +113,6 @@ export default {
     tableData(data) {
       if (data.length > 0) {
         setTimeout(() => {
-          console.log('startScroll');
           startScroll('toTable');
         }, 500);
       }
@@ -121,7 +120,7 @@ export default {
   },
   methods: {
     changeLang() {
-      console.log('nLang');
+      // console.log('nLang');
       const lang = this.lang;
       lang.langNow = lang.langNow === 0 ? 1 : 0;
       this.lang = lang;
