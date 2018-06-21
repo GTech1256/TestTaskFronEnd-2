@@ -13,20 +13,25 @@ div(class="panel")
         )
         label(:for="tab.name.eng" @click="currentTabIndex = tab.id" class="panel__tabs_label")
           p(@click="tableData=[]") {{tab.name.eng}}
+      //.lang(@click="changeLang" :style="{backgroundImage: getLangImage}")
+          p {{lang}}
     h1(id="message") * - Обязательно
     transition(name="fade")
       message( :message="message" v-if="showMessage")
-    keep-alive
-      transition(name="fade" mode="out-in")
-        component(
-          class="panel__content_itm"
-          :is="tabs[currentTabIndex].value"
-          @pickData="showSelect($event)"
-          :picked="pickedData"
-          @showMsg="ShowMsg"
-          @showTable="showTable"
-          @itemPicked="setPickedItem"
-        )
+
+    transition(name="fade" mode="out-in")
+      component(
+        :key="tabs[currentTabIndex].id"
+        class="panel__content_itm"
+        :is="tabs[currentTabIndex].value"
+        @pickData="showSelect($event)"
+        :picked="pickedData"
+        @showMsg="ShowMsg"
+        @showTable="showTable"
+        @itemPicked="setPickedItem"
+        :typeRate= 'tabs[currentTabIndex].typeRate'
+        :mainLink= 'tabs[currentTabIndex].mainLink'
+      )
 
     tableResponse(:data="tableData" v-if="tableData.length > 0")
     h1(v-else) Нет Данных
@@ -34,47 +39,93 @@ div(class="panel")
 
 </template>
 <script>
-import MarketRates from './tabs/MarketRates';
+// import MarketRates from './tabs/MarketRates';
 import Localbitcoins from './tabs/Localbitcoins';
-import ExchangerRates from './tabs/ExchangerRates';
+// import ExchangerRates from './tabs/ExchangerRates';
+import rates from './tabs/rates';
 
 import smartSelect from './smartSelect';
 import tableResponse from './tableResponse';
 import message from './message';
 
-const tabs = [
-  {
-    id: 0,
-    name: { eng: 'Rates p2p/OTC', rus: 'P2P/OTC' },
-    value: MarketRates,
-  },
-  {
-    id: 1,
-    name: { eng: 'Rates Crypto Exchanges', rus: 'Биржи' },
-    value: Localbitcoins,
-  },
-  {
-    id: 2,
-    name: { eng: 'Rates Exchange points', rus: 'Обменники' },
-    value: ExchangerRates,
-  },
-];
+function startScroll(elementID) {
+  const divPos = document.getElementById(elementID).offsetTop;
+  const toUP = document.documentElement.scrollTop > divPos;
+  const pexelsScroll = toUP ? -6 : 6;
+
+  const interval = setInterval(() => {
+    const docPos = document.documentElement.scrollTop;
+
+    if (!toUP && docPos > divPos) {
+      clearInterval(interval);
+    } else if (toUP && docPos < divPos) {
+      clearInterval(interval);
+    } else {
+      window.scrollBy(0, pexelsScroll);
+    }
+  }, 1);
+}
 
 export default {
 
   data() {
     return {
-      tabs,
-      currentTabIndex: 0,
+      tabs: [
+        {
+          id: 0,
+          name: { eng: 'Rates p2p/OTC', rus: 'P2P/OTC' },
+          value: rates,
+          typeRate: 'markets',
+          mainLink: 'https://koshelek.ru/api/MarketRates',
+        },
+        {
+          id: 1,
+          name: { eng: 'Rates Crypto Exchanges', rus: 'Биржи' },
+          value: Localbitcoins,
+        },
+        {
+          id: 2,
+          name: { eng: 'Rates Exchange points', rus: 'Обменники' },
+          value: rates,
+          typeRate: 'exchangers',
+          mainLink: 'https://koshelek.ru/api/ExchangerRates',
+        },
+      ],
+      tabNow: rates,
+      lang: {
+        langNow: 0,
+        langs: ['rus', 'eng'],
+      },
+      currentTabIndex: 2,
       showPicker: false,
       dataForPick: [],
       pickedData: {},
       showMessage: false,
       message: { type: 'info', text: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum' },
       tableData: [],
+      messageInterval: null,
     };
   },
+  watch: {
+    currentTabIndex() {
+      this.pickedData = {};
+    },
+    tableData(data) {
+      if (data.length > 0) {
+        setTimeout(() => {
+          console.log('startScroll');
+          startScroll('toTable');
+        }, 500);
+      }
+    },
+  },
   methods: {
+    changeLang() {
+      console.log('nLang');
+      const lang = this.lang;
+      lang.langNow = lang.langNow === 0 ? 1 : 0;
+      this.lang = lang;
+    },
     showSelect(event) {
       this.showPicker = true;
       this.dataForPick = event;
@@ -87,15 +138,21 @@ export default {
       }
     },
     ShowMsg(event) {
-      this.showMessage = true;
+      if (this.showMessage) {
+        clearInterval(this.messageInterval);
+      } else {
+        this.showMessage = true;
+      }
       this.message = event;
 
       const vm = this;
 
-      setTimeout(() => {
+
+      this.messageInterval = setTimeout(() => {
         vm.showMessage = false;
-      }, 4000);
-      location.href = '#message';
+      }, 3000);
+
+      startScroll('message');
     },
     showTable(event) {
       this.tableData = event;
@@ -175,6 +232,8 @@ input:checked + .panel__tabs_label
   margin: 5px;
   margin-bottom 50px
 
+.lang
+  margin-left: auto;
 
 .items__item
   display:flex

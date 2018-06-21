@@ -14,11 +14,36 @@
           checked
         )
 
-    .items__item.flex(v-for="params in selects")
-      label(:for="params.name" @click="this.$emit('pickData',['тест','da'])" )
+    .flex.items__item(
+      v-for="params in selects"
+      @click="$emit('pickData', { name: params.name, items: params.data })"
+    )
+      label(:for="params.name" )
         h1 {{params.value}}
-      .items__item_input( @click="$emit('pickData', { name: params.name, items: params.data })" )
+      .items__item_input(  )
         p {{ textInputs(params) }}
+    //pug mixin
+    label.flex.items__item(for="dateFrom")
+      span
+          h1 Первый день
+
+      input(
+        type="date"
+        id="dateFrom"
+        required
+        v-model="dateFrom"
+      )
+    label.flex.items__item(for="dateTo")
+      span
+          h1 Последний день
+
+      input(
+        type="date"
+        id="dateTo"
+        required
+        v-model="dateTo"
+      )
+
     .btn(@click="getRates")
       p Получить данные
 
@@ -31,39 +56,43 @@
 import axios from 'axios';
 import localDB from '../../../static/localDB';
 
-/*
-
-GET /api/MarketRates/{pair}           Gets historical data about pair rate || date from | date to
-
-GET /api/MarketRates/{pair}/{market}  Gets historical data about pair rate on concrete market ||
-date from | date to
-
-GET /api/MarketRates/pairs            Gets all pairs
-
-GET /api/MarketRates/pairs/{market}   Gets market pairs
-
-GET /api/MarketRates/markets          Gets all markets
-
- */
-
-const mainLink = 'https://koshelek.ru/api/MarketRates';
-const pairsLink = `${mainLink}/pairs`;
-const marketsLink = `${mainLink}/markets`;
+function didValidDate(dateFrom, dateTo) {
+  if (!dateFrom || dateFrom.getTime() === 0 || !dateTo || dateTo.getTime() === 0) {
+    return {
+      status: false,
+      message: 'Время не учтено т к не выбрано',
+    };
+  }
+  if (dateFrom.getTime() >= dateTo.getTime()) {
+    return {
+      status: false,
+      message: 'Время не учтено т к выбран не правильный промежуток',
+    };
+  }
+  return {
+    status: true,
+    message: 'всё хорошо',
+  };
+}
 
 let oldMarket;
 
 export default {
   props: [
     'picked',
+    'mainLink',
+    'typeRate',
   ],
   components: {
     // customCheckbox,
   },
   data() {
     return {
+      dateFrom: null,
+      dateTo: null,
       didLoadByMarket: true,
       pairsData: [],
-      marketsData: [],
+      exchangersData: [],
       selects: [
         {
           value: 'Пара*:',
@@ -73,34 +102,42 @@ export default {
         },
         {
           value: 'Биржа:',
-          name: 'markets',
+          name: 'exchangers',
           data: [],
           picked: '',
         },
       ],
     };
   },
+  computed: {
+    getLinks() {
+      return {
+        pairs: `${this.mainLink}/pairs`,
+        second: `${this.mainLink}/${this.typeRate}`,
+      };
+    },
+  },
   watch: {
     async didLoadByMarket(didLoadByMarket) {
       if (didLoadByMarket) {
         this.loadPairsByMarket();
-      } else if (this.picked.markets) {
-        const marketsResponse = await axios.get(pairsLink);
+      } else if (this.picked.exchangers) {
+        const exchangersResponse = await axios.get(this.getLinks.pairs);
 
-        const { data } = marketsResponse;
+        const { data } = exchangersResponse;
 
 
         this.pairsData = data;
       }
     },
     picked: {
-      handler({ markets }) {
-        if (markets !== oldMarket) {
+      handler({ exchangers }) {
+        if (exchangers !== oldMarket) {
           if (this.didLoadByMarket) {
             this.loadPairsByMarket();
             this.$emit('itemPicked', { name: 'pairs' });
           }
-          oldMarket = markets;
+          oldMarket = exchangers;
         }
       },
       deep: true,
@@ -109,26 +146,31 @@ export default {
       this.selects[0].data = data;
       // console.log('new pairs', data.length);
     },
-    marketsData(data) {
+    exchangersData(data) {
       this.selects[1].data = data;
+
+      /*
+      if (!this.picked.exchangers) {
+        return;
+      }
+      */
     },
   },
   async created() {
     try {
-      // console.log(pairsLink);
-      const pairsResponse = await axios.get(pairsLink);
+      const pairsResponse = await axios.get(this.getLinks.pairs);
       let { data } = pairsResponse;
       // to normalize name
       // data = this.normalizePairsByAssociation(data);
 
       this.pairsData = data;
 
-      const marketsResponse = await axios.get(marketsLink);
+      const exchangersResponse = await axios.get(this.getLinks.second);
 
-      ({ data: { data } = marketsResponse });
+      ({ data: { data } = exchangersResponse });
 
 
-      this.marketsData = data;
+      this.exchangersData = data;
     } catch (e) {
       console.error(e);
       this.$emit('showMsg', { type: 'crash', text: 'Ошибка отправки/принятия запроса' });
@@ -138,26 +180,51 @@ export default {
     textInputs(params) {
       return this.picked[params.name] === undefined || this.picked[params.name] === null ?
         params.data && params.data[0] ? 'Выбрать значение' :
-          'Нет значений для выбранной биржи' : this.picked[params.name];
+          'Нет значений' : this.picked[params.name];
     },
     async getRates() {
       try {
+        // вынести в отдельный js
+
+        // getPairs
         let pair = this.picked.pairs;
         if (!pair) {
           this.$emit('showMsg', { type: 'warning', text: 'Пара не выбрана' });
           return;
         }
         pair = pair.replace('/', '%2');
-        let link = `${mainLink}/${pair}`;
+        //
 
-        let markets = this.picked.markets;
-        if (!markets) {
+        let link = `${this.mainLink}/${pair}`;
+
+        // getExchangers
+        let exchangers = this.picked.exchangers;
+        if (!exchangers) {
           this.$emit('showMsg', { type: 'info', text: 'Биржа не учтена т к не выбрана' });
         } else {
-          markets = markets.replace('/', '%2');
-          link += `/${markets}`;
+          exchangers = exchangers.replace('/', '%2');
+          link += `/${exchangers}`;
         }
-        // console.log(link);
+        //
+
+        // getDataFrom
+        let dateFrom = new Date(this.dateFrom);
+        let dateTo = new Date(this.dateTo);
+        const didValidDateResult = didValidDate(dateFrom, dateTo);
+        if (didValidDateResult.status) {
+          this.$emit('showMsg', { type: 'info', text: didValidDateResult.message });
+        } else {
+          dateFrom = dateFrom.toISOString();
+          dateFrom = dateFrom.replace('/', '%2');
+          link += `?dateFrom=${dateFrom}`;
+
+          dateTo = dateTo.toISOString();
+          dateTo = dateTo.replace('/', '%2');
+          link += `&dateTo=${dateTo}`;
+        }
+        console.log(link);
+
+        // Set response
         const response = await axios.get(link);
         if (response.data.length === 0) {
           this.$emit('showMsg', { type: 'info', text: 'По вашему запросу нечего не найдено' });
@@ -170,24 +237,22 @@ export default {
       }
     },
     normalizePairsByAssociation(array) {
-      // array ['','']
       const { associaces } = localDB;
       const newArr = array.map((item) => {
         const newName = associaces[item] || item;
         return newName;
       });
-      // console.log(newArr);
+
       return newArr;
     },
     async loadPairsByMarket() {
-      let markets = this.picked.markets;
-      if (!markets) {
+      let exchangers = this.picked.exchangers;
+      if (!exchangers) {
         return;
       }
-      markets = markets.replace('/', '%2');
-      const link = `${pairsLink}/${markets}`;
+      exchangers = exchangers.replace('/', '%2');
+      const link = `${this.getLinks.pairs}/${exchangers}`;
 
-      // console.log(link);
       const response = await axios.get(link);
       this.pairsData = response.data;
     },
@@ -197,6 +262,7 @@ export default {
 <style lang="stylus">
 
 lightGreyColor= #d9d9d9
+
 
 .items__params_checkbox
   display flex
@@ -214,32 +280,18 @@ lightGreyColor= #d9d9d9
 
 .items__params_by_pairs_input
   max-width 30%
-  width 30px
-  height 30px
-  margin auto 0
 
 
 h1
   font-size:1.5rem
 
-
-.items__params_checkbox
+.items__params
   min-width 200px
 
 @media (max-width: 400px)
   .items__params
-    font-size .7rem
+    font-size .5rem
 
-  .items__params_checkbox
-    min-width 140px
-
-  .items__params_by_pairs_text
-    width 30%
-
-  .items__params_by_pairs_input
-    max-width 30%
-    width 15px
-    height 15px
 
 </style>
 

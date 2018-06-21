@@ -22,6 +22,7 @@ mainColor = #ffffff
   transition:background .2s linear;
   font-style:normal;
   font-family: "Roboto", helvetica, arial, sans-serif;
+  // scroll-behavior: smooth;
 }
 
 </style>

@@ -50,6 +50,8 @@ module.exports = {
     'no-console': ["error", { allow: ["warn", "error", "log"] }],
     'no-unused-expressions': 0,
     'no-plusplus': 0,
-    'no-nested-ternary': 0
+    'no-nested-ternary': 0,
+    'no-throw-literal': 0,
+    'no-param-reassign': 0,
   }
 }

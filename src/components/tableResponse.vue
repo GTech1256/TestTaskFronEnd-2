@@ -7,7 +7,7 @@
       :itemOnPage="itemOnPage"
       @newPage="newPage"
     )
-    .div__itemsChange.flex
+    .div__itemsChange.flex(id="toTable")
       label.div__itemsChange_text(for="numItems") Количество элементов в таблице:
       input.div__itemsChange_input(id="numItems" placeholder="20" v-model="itemOnPage")
     table(class="table-fill")
