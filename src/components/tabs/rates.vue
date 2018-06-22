@@ -19,7 +19,7 @@
       @click="$emit('pickData', { name: params.name, items: params.data })"
     )
       label(:for="params.name" )
-        h1 {{params.value}}
+        h1 {{exchangersName(params)}}
       .items__item_input(  )
         p {{ textInputs(params) }}
     //pug mixin
@@ -44,7 +44,7 @@
         v-model="dateTo"
       )
 
-    .btn(@click="getRates")
+    .btn.flex(@click="getRates")
       p Получить данные
 
 </template>
@@ -101,7 +101,7 @@ export default {
           picked: '',
         },
         {
-          value: 'Биржа:',
+          value: ['Биржа:', 'Обменники:'],
           name: 'exchangers',
           data: [],
           picked: '',
@@ -170,6 +170,14 @@ export default {
     }
   },
   methods: {
+    exchangersName({ name, value }) {
+      if (name !== 'exchangers') {
+        return value;
+      }
+      // this.typeRate = 'exchangers';
+      const indexValue = this.typeRate === 'exchangers' ? 1 : 0;
+      return value[indexValue];
+    },
     textInputs(params) {
       return this.picked[params.name] === undefined || this.picked[params.name] === null ?
         params.data && params.data[0] ? 'Выбрать значение' :
@@ -256,6 +264,12 @@ export default {
 
 lightGreyColor= #d9d9d9
 
+h1
+  font-size:1.5rem
+
+.items__params
+  min-width 200px
+  margin 10px
 
 .items__params_checkbox
   display flex
@@ -269,21 +283,33 @@ lightGreyColor= #d9d9d9
 
 .items__params_by_pairs_text
   font-weight: bold
-  margin auto 0
+  margin auto 10px
 
 .items__params_by_pairs_input
   max-width 30%
 
 
-h1
-  font-size:1.5rem
+.items__params_checkbox:hover
+ transform translateY(-2px)
+ box-shadow 6px 6px 6px 0px rgba(0,0,0,.2)
 
-.items__params
-  min-width 200px
+@media(max-width: 768px)
 
-@media (max-width: 400px)
+  .items__params_checkbox
+    flex-direction column
+    justify-content center
+    align-items center
+    text-align center
+    margin auto
+
+
+@media(max-width: 430px)
   .items__params
-    font-size .5rem
+    font-size .7rem
+
+  .items__params_by_pairs_input
+    width 25px
+    height 25px
 
 
 </style>

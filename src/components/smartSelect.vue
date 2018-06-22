@@ -166,6 +166,9 @@ export default {
   text-align center
   font-size .5em
   cursor pointer
+  &:hover
+    transform translateY(-1px)
+    box-shadow 4px 4px 4px 0 rgba(150,0,0,.3)
 
 .div__container_head
   margin 10px
@@ -193,6 +196,9 @@ export default {
   border-radius 10px
   padding 5px
   margin 7px
+  &:hover
+    transform translateY(-1px)
+    box-shadow 2px 2px 2px 0px rgba(0,0,0,.3)
 
 @media (max-width: 768px)
   .div__container

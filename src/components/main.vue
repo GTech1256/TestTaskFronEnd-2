@@ -15,7 +15,8 @@ div(class="panel")
           p(@click="tableData=[]") {{tab.name.eng}}
       //.lang(@click="changeLang" :style="{backgroundImage: getLangImage}")
           p {{lang}}
-    h1(id="message") * - Обязательно
+    #message
+      h1 * - Обязательно
     transition(name="fade")
       message( :message="message" v-if="showMessage")
 
@@ -167,7 +168,6 @@ export default {
 </script>
 <style lang="stylus">
 
-
 mainColor= #3AA6D0
 lightColor= #62B1D0
 darkenColor= darken(mainColor,15%)
@@ -181,6 +181,7 @@ tabsColor = #cccccc
 body
   background-color: darkenColor
   font-family: arial
+
 
 ul
   list-style-type none
@@ -196,15 +197,18 @@ label
   margin: 0px .25em 0 0;
   border-radius: 20px
   font-size 1.5rem
-
-.panel__tabs_label:hover
-  background tabsColor
-  cursor pointer
+  &:hover
+    background tabsColor
+    cursor pointer
+    transform translateY(-2px)
+    box-shadow 6px 6px 6px 0px rgba(0,0,0,.3)
 
 
 input:checked + .panel__tabs_label
   font-weight bold
   background darken(tabsColor,10%)
+  transform translateY(-5px)
+  box-shadow 6px 6px 6px 0px rgba(0,0,0,.2)
 
 
 .flex
@@ -235,6 +239,7 @@ input:checked + .panel__tabs_label
   margin-left: auto;
 
 .items__item
+  padding 10px
   display:flex
   width:60%
   justify-content: space-between
@@ -242,23 +247,23 @@ input:checked + .panel__tabs_label
   margin-bottom:20px
   padding-bottom: 10px
   align-items: center;
+  &:hover
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 6px 0 rgba(0,0,0,0.2);
+    border 1px solid rgba(0,0,0,0.2)
 
-.items__item:hover
-  background: linear-gradient(
-    to top,
-    rgba(28,98,210,0.5) 0%,
-    rgba(255,255,255,0.69) 17%,
-    rgba(255,255,255,1) 100%
-  )
-  border-bottom-style: solid
-  margin-bottom:19px
+.items__item:hover .items__item_input
+  transform: translateY(-1px);
+  box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
+
 
 .items__item:focus
   border-bottom-style: solid
   margin-bottom:9px
 
 .items__item_input
-  padding 10px 40px
+  margin auto 0
+  padding 0 40px
   border 1px solid lightGreyColor
   border-radius 5px;
   cursor pointer
@@ -274,21 +279,22 @@ input:checked + .panel__tabs_label
 
 .btn
   cursor pointer
-  align-content: flex-end
   background-color:mainColor
+  text-align center
   width:150px;
   height: 50px;
-  line-height: 50px;
   color:white
-  text-align:center
-  content-align:middle
   border-radius:10px
+  &:hover
+    background-color:lightColor
+    box-shadow: 6px 6px 6px 0 rgba(0,0,0,0.2);
+    border 1px solid rgba(0,0,0,0.2)
+  &:active
+    background-color:darkColor
+    box-shadow: none
+  > p
+    margin auto
 
-.btn:hover
-  background-color:darkenColor
-
-.btn:active
-  background-color:darkColor
 
 select, input
   height:3em
@@ -301,40 +307,6 @@ select, input
 .fade-enter, .fade-leave-to
   opacity: 0
 
-/*
-vue transition name="currentTabIndex === 0 ? 'component-left':'component-right'"
-слайдер глючит
-.component-right-enter-active {
-  display: inline-block;
-  animation: btnOff .3s ease-in-out;
-}
-
-.component-right-leave-active {
-  display: inline-block;
-  animation: btnOn .3s ease-in-out;
-}
-
-.component-left-enter-active {
-  display: inline-block;
-  animation: btnOn .3s ease-in-out;
-  animation-direction: reverse;
-}
-
-.component-left-leave-active {
-  display: inline-block;
-  animation: btnOff .3s ease-in-out reverse;
-}
-
-@keyframes btnOn {
-  from { transform: translateX(0px); opacity: 1; }
-  to { transform: translateX(-40px); opacity: 0; }
-}
-
-@keyframes btnOff {
-  from { transform: translateX(40px); opacity: 0;}
-  to { transform: translateX(0px); opacity: 1; }
-}
-*/
 
 //@media (max-width: 1200px)
 
@@ -347,7 +319,8 @@ vue transition name="currentTabIndex === 0 ? 'component-left':'component-right'"
 
 @media (max-width: 768px)
   .items__item
-    flex-wrap wrap
+    flex-direction column
+    justify-content center
 
   .panel
     padding 20px
@@ -357,6 +330,19 @@ vue transition name="currentTabIndex === 0 ? 'component-left':'component-right'"
 
   .items__item:hover
     background: none
+
+  #center
+    justify-content center
+
+  #message
+    display flex
+    justify-content center
+
+  .items__item
+    margin 30px auto
+
+  .btn
+    margin auto
 
 @media (max-width: 400px)
   .panel

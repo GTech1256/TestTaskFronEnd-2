@@ -30,7 +30,7 @@
         v-model="numItemsFromBack"
       )
 
-    .btn(@click="getData")
+    .btn.flex(@click="getData")
       p Получить данные
 
 </template>
@@ -247,9 +247,7 @@ h1
   border: 0;
   font-size 2rem
   margin auto 0
-  height 1% // border поднимает
-  width 25%
-  min-width 25%
+  width 10%
   text-align center
 
 
