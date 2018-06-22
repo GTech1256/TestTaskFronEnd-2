@@ -290,7 +290,6 @@ h1
 
 
 .items__params_checkbox:hover
- transform translateY(-2px)
  box-shadow 6px 6px 6px 0px rgba(0,0,0,.2)
 
 @media(max-width: 768px)

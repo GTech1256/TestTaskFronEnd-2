@@ -52,8 +52,6 @@ export default {
   min-height 150px
   padding 20px
 
-  transform: translateY(-3px);
-
 
  .messagebox > h1
   font-size 1.5rem

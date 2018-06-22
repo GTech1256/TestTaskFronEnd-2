@@ -200,7 +200,6 @@ label
   &:hover
     background tabsColor
     cursor pointer
-    transform translateY(-2px)
     box-shadow 6px 6px 6px 0px rgba(0,0,0,.3)
 
 
@@ -247,19 +246,17 @@ input:checked + .panel__tabs_label
   margin-bottom:20px
   padding-bottom: 10px
   align-items: center;
+  border 1px solid white
   &:hover
-    transform: translateY(-3px);
     box-shadow: 6px 6px 6px 0 rgba(0,0,0,0.2);
     border 1px solid rgba(0,0,0,0.2)
 
 .items__item:hover .items__item_input
-  transform: translateY(-1px);
   box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
 
 
 .items__item:focus
   border-bottom-style: solid
-  margin-bottom:9px
 
 .items__item_input
   margin auto 0
