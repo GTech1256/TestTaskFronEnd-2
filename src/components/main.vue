@@ -115,7 +115,7 @@ export default {
       showPicker: false,
       showCustomSelect: false,
       positionCustomSelect: { pageY: 100, pageX: 100 },
-      dataForPick: { name: 'nameOfInput', items: ['items', 'for', 'v', 'for'] },
+      dataForPick: { /* name: 'nameOfInput', items: ['items', 'for', 'v', 'for'] */ },
       pickedData: {},
       showMessage: false,
       message: { type: 'info', text: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum' },
@@ -126,6 +126,7 @@ export default {
   watch: {
     currentTabIndex() {
       this.pickedData = {};
+      this.showCustomSelect = false;
     },
     tableData(data) {
       if (data.length > 0) {
@@ -143,6 +144,7 @@ export default {
     },
     showSelect(data) {
       if (data.items.length > 10) {
+        this.showCustomSelect = false;
         this.showPicker = true;
         this.dataForPick = data;
       } else {
@@ -268,9 +270,6 @@ input:checked + .panel__tabs_label
     box-shadow: 6px 6px 6px 0 rgba(0,0,0,0.2);
     border 1px solid rgba(0,0,0,0.2)
 
-.items__item:hover .items__item_input
-  box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2);
-
 
 .items__item:focus
   border-bottom-style: solid
@@ -278,18 +277,9 @@ input:checked + .panel__tabs_label
 .items__item_input
   margin auto 0
   padding 0 40px
-  border 1px solid lightGreyColor
-  border-radius 5px;
   cursor pointer
   text-align center
 
-.items__item_input:hover
-  border-color greyColor
-  background-color:lightGreyColor
-
-.items__item_input:active
-  border-color black
-  background-color:greyColor
 
 .btn
   cursor pointer

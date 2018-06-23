@@ -3,9 +3,9 @@
   .items
     .flex.items__item(
       v-for="params in inputs"
-      @click="openSmartSelect(params.name, params.data)"
+      @click="openSmartSelect(params.name, params.data, $event)"
     )
-      label(:for=" params.name")
+      label(:for="params.name")
         h1 {{params.value }}
 
       .items__item_input
@@ -138,9 +138,10 @@ export default {
         params.data && params.data[0] ? 'Выбрать значение' :
           'Нет значений' : this.picked[params.name];
     },
-    openSmartSelect(name, items) {
+    openSmartSelect(name, items, { pageX, pageY }) {
       if (items && items.length > 0) {
-        this.$emit('pickData', { name, items });
+        const dataForEmit = { name, items, pos: { pageX, pageY } };
+        this.$emit('pickData', dataForEmit);
       } else {
         switch (name) {
           case 'country':
