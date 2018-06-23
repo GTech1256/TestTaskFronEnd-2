@@ -1,7 +1,17 @@
 <template lang="pug">
 
 div(class="panel")
-  smartSelect(:show="showPicker" :data="dataForPick" @itemPicked="setPickedItem")
+  customSelect(
+    v-show="showCustomSelect"
+    :data="dataForPick"
+    @itemPicked="setPickedItem"
+    :selectPosition="positionCustomSelect"
+  )
+  smartSelect(
+    :show="showPicker"
+    :data="dataForPick"
+    @itemPicked="setPickedItem"
+  )
   div(id="center")
     div(class="flex panel__tabs")
       template(v-for="tab in tabs")
@@ -25,7 +35,7 @@ div(class="panel")
         :key="tabs[currentTabIndex].id"
         class="panel__content_itm"
         :is="tabs[currentTabIndex].value"
-        @pickData="showSelect($event)"
+        @pickData="showSelect"
         :picked="pickedData"
         @showMsg="ShowMsg"
         @showTable="showTable"
@@ -40,12 +50,11 @@ div(class="panel")
 
 </template>
 <script>
-// import MarketRates from './tabs/MarketRates';
 import Localbitcoins from './tabs/Localbitcoins';
-// import ExchangerRates from './tabs/ExchangerRates';
 import rates from './tabs/rates';
 
 import smartSelect from './smartSelect';
+import customSelect from './customSelect';
 import tableResponse from './tableResponse';
 import message from './message';
 
@@ -68,20 +77,25 @@ function startScroll(elementID) {
 }
 
 export default {
-
+  components: {
+    smartSelect,
+    tableResponse,
+    message,
+    customSelect,
+  },
   data() {
     return {
       tabs: [
         {
           id: 0,
-          name: { eng: 'Rates p2p/OTC', rus: 'P2P/OTC' },
+          name: { eng: 'Rates Crypto Exchanges', rus: 'Биржи' },
           value: rates,
           typeRate: 'markets',
           mainLink: 'https://koshelek.ru/api/MarketRates',
         },
         {
           id: 1,
-          name: { eng: 'Rates Crypto Exchanges', rus: 'Биржи' },
+          name: { eng: 'Rates p2p/OTC', rus: 'P2P/OTC' },
           value: Localbitcoins,
         },
         {
@@ -97,9 +111,11 @@ export default {
         langNow: 0,
         langs: ['rus', 'eng'],
       },
-      currentTabIndex: 2,
+      currentTabIndex: 0,
       showPicker: false,
-      dataForPick: [],
+      showCustomSelect: false,
+      positionCustomSelect: { clientY: 100, clientX: 100 },
+      dataForPick: { name: 'nameOfInput', items: ['items', 'for', 'v', 'for'] },
       pickedData: {},
       showMessage: false,
       message: { type: 'info', text: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum' },
@@ -121,29 +137,35 @@ export default {
   },
   methods: {
     changeLang() {
-      // console.log('nLang');
       const lang = this.lang;
       lang.langNow = lang.langNow === 0 ? 1 : 0;
       this.lang = lang;
     },
-    showSelect(event) {
-      this.showPicker = true;
-      this.dataForPick = event;
-    },
-    setPickedItem(event) {
-      this.showPicker = false;
-      this.dataForPick = '';
-      if (event) {
-        this.$set(this.pickedData, event.name, event.item);
+    showSelect(data) {
+      if (data.items.length > 10) {
+        this.showPicker = true;
+        this.dataForPick = data;
+      } else {
+        this.showCustomSelect = true;
+        this.dataForPick = data;
+        this.positionCustomSelect = data.pos;
       }
     },
-    ShowMsg(event) {
+    setPickedItem(data) {
+      this.showPicker = false;
+      this.showCustomSelect = false;
+      this.dataForPick = {};
+      if (data) {
+        this.$set(this.pickedData, data.name, data.item);
+      }
+    },
+    ShowMsg(data) {
       if (this.showMessage) {
         clearInterval(this.messageInterval);
       } else {
         this.showMessage = true;
       }
-      this.message = event;
+      this.message = data;
 
       const vm = this;
 
@@ -157,11 +179,6 @@ export default {
     showTable(event) {
       this.tableData = event;
     },
-  },
-  components: {
-    smartSelect,
-    tableResponse,
-    message,
   },
 };
 

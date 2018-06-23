@@ -15,7 +15,7 @@
       span
           h1 Дата/Время*
       input(
-        type="date"
+        type="datetime-local"
         id="datetime"
         required
         v-model="datetime"
@@ -46,7 +46,7 @@ function getValidDate(dateText) {
     throw ({ type: 'info', text: 'Не правильный формат даты' });
   }
   if (date.getTime() === 0) {
-    throw ({ type: 'info', text: 'Время не указано' });
+    throw ({ type: 'info', text: 'Дата/Время не указаны' });
   }
   return date.toISOString();
 }
@@ -203,9 +203,6 @@ export default {
     picked: {
       handler({ country }) {
         if (oldCountry !== country) {
-          // set old Countrt
-          // this.$emit('itemPicked', { name: 'pairs' });
-
           const countrys = this.selects.country.data;
           const countryCode = country;
 
@@ -213,10 +210,10 @@ export default {
 
           if (typeof countryCode === 'string') {
             cities = countrys.filter(val => val.countryCode === countryCode);
-            cities = cities.map(item => item.cities);
+
+            this.selects.cities.data = cities.map(item => item.cities)[0];
           }
 
-          this.selects.cities.data = cities;
           oldCountry = country;
         }
       },

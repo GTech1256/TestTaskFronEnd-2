@@ -16,19 +16,19 @@
 
     .flex.items__item(
       v-for="params in selects"
-      @click="$emit('pickData', { name: params.name, items: params.data })"
+      @click="emitPick(params,$event)"
     )
       label(:for="params.name" )
         h1 {{exchangersName(params)}}
-      .items__item_input(  )
+      .items__item_input
         p {{ textInputs(params) }}
-    //pug mixin
+
     label.flex.items__item(for="dateFrom")
       span
           h1 Первый день
 
       input(
-        type="date"
+        type="datetime-local"
         id="dateFrom"
         required
         v-model="dateFrom"
@@ -38,7 +38,7 @@
           h1 Последний день
 
       input(
-        type="date"
+        type="datetime-local"
         id="dateTo"
         required
         v-model="dateTo"
@@ -109,6 +109,24 @@ export default {
       ],
     };
   },
+  async created() {
+    try {
+      const pairsResponse = await axios.get(this.getLinks.pairs);
+      let { data } = pairsResponse;
+      // to normalize name
+      // data = this.normalizePairsByAssociation(data);
+
+      this.pairsData = data;
+      const exchangersResponse = await axios.get(this.getLinks.second);
+      ({ data: { data } = exchangersResponse });
+
+
+      this.exchangersData = data;
+    } catch (e) {
+      console.error(e);
+      this.$emit('showMsg', { type: 'crash', text: 'Ошибка отправки/принятия запроса' });
+    }
+  },
   computed: {
     getLinks() {
       return {
@@ -149,27 +167,12 @@ export default {
       this.selects[1].data = data;
     },
   },
-  async created() {
-    try {
-      const pairsResponse = await axios.get(this.getLinks.pairs);
-      let { data } = pairsResponse;
-      // to normalize name
-      // data = this.normalizePairsByAssociation(data);
-
-      this.pairsData = data;
-
-      const exchangersResponse = await axios.get(this.getLinks.second);
-
-      ({ data: { data } = exchangersResponse });
-
-
-      this.exchangersData = data;
-    } catch (e) {
-      console.error(e);
-      this.$emit('showMsg', { type: 'crash', text: 'Ошибка отправки/принятия запроса' });
-    }
-  },
   methods: {
+    emitPick({ name, data }, { clientX, clientY }) {
+      const dataForEmit = { name, items: data, pos: { clientX, clientY } };
+      console.log(dataForEmit);
+      this.$emit('pickData', dataForEmit);
+    },
     exchangersName({ name, value }) {
       if (name !== 'exchangers') {
         return value;

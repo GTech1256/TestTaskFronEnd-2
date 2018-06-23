@@ -10,16 +10,17 @@
     .div__itemsChange.flex(id="toTable")
       label.div__itemsChange_text(for="numItems") Количество элементов в таблице:
       input.div__itemsChange_input(id="numItems" placeholder="20" v-model="itemOnPage")
-    table(class="table-fill")
-      thead
-        tr
-          th(class="text-left" v-for="headerText in tableType.headers")
-            p {{ headerText }}
+    .table
+      table.table-fill
+        thead
+          tr
+            th.text-left(v-for="headerText in tableType.headers")
+              p {{ headerText }}
 
-      tbody(class="table-hover")
-        tr(v-for="items in paginatedItems")
-          td(class="text-left" v-for="item in items")
-            p {{item}}
+        tbody.table-hover
+          tr(v-for="items in paginatedItems")
+            td.text-left(v-for="item in items")
+              p {{item}}
 
 </template>
 <script>
@@ -127,12 +128,16 @@ div.table-title {
 .pagination
   margin 0 20%
 
+.table
+  overflow-x auto
+  transform:rotateX(180deg)
+
 .table-title h3 {
-   color: #fafafa;
-   font-size: 30px;
-   font-weight: 400;
-   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
-   text-transform:uppercase;
+  color: #fafafa;
+  font-size: 30px;
+  font-weight: 400;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  text-transform:uppercase;
 }
 
 .div__itemsChange
@@ -140,8 +145,9 @@ div.table-title {
 
 .div__itemsChange_text
   font-weight bold
-  font-size 2rem
+  font-size 1.5rem
   cursor pointer
+  margin 20px 0
 
 
 .div__itemsChange_input
@@ -149,8 +155,6 @@ div.table-title {
   padding: 0;
   border: 0;
   font-size 2rem
-  border-bottom 1px solid #cccccc
-  border-radius 0
   margin auto 0
   height 1% // border поднимает
   width 25%
@@ -158,17 +162,14 @@ div.table-title {
   margin-right 60px
   text-align center
 
-.div__itemsChange_input:hover
-  border-bottom 1px solid grey
-  font-size 4rem
-  min-width 40%
 
 .div__container_head
   margin auto
 
 /*** Table Styles **/
 
-.table-fill {
+.table-fill
+  transform:rotateX(180deg)
   background: white;
   border-radius:3px;
   border-collapse: collapse;
@@ -179,7 +180,7 @@ div.table-title {
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
-}
+
 
 th {
   color:#D5DDE5;;

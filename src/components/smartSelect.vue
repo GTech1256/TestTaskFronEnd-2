@@ -70,6 +70,7 @@ export default {
       return sortedItems;
     },
     smartSearch() {
+      // console.log(this.data);
       if (this.data.length === 0 || !this.data.items) {
         // this.$emit('itemPicked', { name: '', item: undefined });
         // this.sendEmit('', null);
@@ -90,7 +91,6 @@ export default {
       const endItems = itemsSize + offset; // end
 
       const items = this.smartSearch;
-      // console.log(items, offset, endItems);
       const newArr = items.slice(offset, endItems);
       return newArr;
     },
