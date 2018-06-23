@@ -1,5 +1,5 @@
 <template lang="pug">
-  .selectPanel(:style="{ top: selectPosition.clientY+'px', left: selectPosition.clientX+'px' }")
+  .selectPanel(:style="{ top: selectPosition.pageY+'px', left: selectPosition.pageX+'px' }")
     .panel__select
       .panel__select_item(v-for="item in getItems")
         p(@click="sendEmit(data.name, item)") {{ item }}

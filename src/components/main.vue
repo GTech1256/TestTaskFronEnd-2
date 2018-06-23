@@ -114,7 +114,7 @@ export default {
       currentTabIndex: 0,
       showPicker: false,
       showCustomSelect: false,
-      positionCustomSelect: { clientY: 100, clientX: 100 },
+      positionCustomSelect: { pageY: 100, pageX: 100 },
       dataForPick: { name: 'nameOfInput', items: ['items', 'for', 'v', 'for'] },
       pickedData: {},
       showMessage: false,

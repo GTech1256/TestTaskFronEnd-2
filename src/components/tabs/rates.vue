@@ -168,8 +168,8 @@ export default {
     },
   },
   methods: {
-    emitPick({ name, data }, { clientX, clientY }) {
-      const dataForEmit = { name, items: data, pos: { clientX, clientY } };
+    emitPick({ name, data }, { pageX, pageY }) {
+      const dataForEmit = { name, items: data, pos: { pageX, pageY } };
       console.log(dataForEmit);
       this.$emit('pickData', dataForEmit);
     },
