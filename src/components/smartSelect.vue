@@ -70,7 +70,6 @@ export default {
       return sortedItems;
     },
     smartSearch() {
-      // console.log(this.data);
       if (this.data.length === 0 || !this.data.items) {
         // this.$emit('itemPicked', { name: '', item: undefined });
         // this.sendEmit('', null);

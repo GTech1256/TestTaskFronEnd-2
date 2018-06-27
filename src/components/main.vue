@@ -132,7 +132,7 @@ export default {
       if (data.length > 0) {
         setTimeout(() => {
           startScroll('toTable');
-        }, 500);
+        }, 2000);
       }
     },
   },
@@ -332,8 +332,6 @@ select, input
   .panel__tabs_label
     font-size 1rem
 
-  .items__item:hover
-    background: none
 
   #center
     justify-content center
@@ -344,6 +342,11 @@ select, input
 
   .items__item
     margin 30px auto
+    &:hover
+      background: none
+    label
+      text-align center
+      margin 0
 
   .btn
     margin auto

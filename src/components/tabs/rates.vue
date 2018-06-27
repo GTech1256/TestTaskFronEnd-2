@@ -11,7 +11,6 @@
           type="checkbox"
           id="didLoadByMarket"
           v-model="didLoadByMarket"
-          checked
         )
 
     .flex.items__item(
@@ -54,7 +53,7 @@
 
 
 import axios from 'axios';
-import localDB from '../../../static/localDB';
+import fakeDB from '../../../static/fakeDB/index';
 
 function didValidDate(dateFrom, dateTo) {
   if (!dateFrom || dateFrom.getTime() === 0 || !dateTo || dateTo.getTime() === 0) {
@@ -90,7 +89,7 @@ export default {
     return {
       dateFrom: null,
       dateTo: null,
-      didLoadByMarket: true,
+      didLoadByMarket: false,
       pairsData: [],
       exchangersData: [],
       selects: [
@@ -112,22 +111,30 @@ export default {
   async created() {
     try {
       const pairsResponse = await axios.get(this.getLinks.pairs);
-      let { data } = pairsResponse;
-      // to normalize name
-      // data = this.normalizePairsByAssociation(data);
+      const { data } = pairsResponse;
 
       this.pairsData = data;
+    } catch (e) {
+      this.$emit('showMsg', { type: 'crash', text: 'Ошибка принятия запроса Пар. Пары загружены из локального хранилища.' });
+
+      this.pairsData = fakeDB[this.getNameRate].pairs;
+    }
+    try {
       const exchangersResponse = await axios.get(this.getLinks.second);
-      ({ data: { data } = exchangersResponse });
-
-
+      const { data } = exchangersResponse;
       this.exchangersData = data;
     } catch (e) {
-      console.error(e);
-      this.$emit('showMsg', { type: 'crash', text: 'Ошибка отправки/принятия запроса' });
+      this.$emit('showMsg', { type: 'crash', text: 'Ошибка принятия  Бирж/Обменников. Биржы/Обменники загружены из локального хранилища' });
+
+      this.exchangersData = fakeDB[this.getNameRate][this.typeRate];
     }
   },
   computed: {
+    getNameRate() {
+      const linkPath = this.mainLink.split('/');
+      const nameRate = linkPath[linkPath.length - 1];
+      return nameRate;
+    },
     getLinks() {
       return {
         pairs: `${this.mainLink}/pairs`,
@@ -136,13 +143,18 @@ export default {
     },
   },
   watch: {
-    async didLoadByMarket(didLoadByMarket) {
-      if (didLoadByMarket) {
+    async didLoadByMarket(didByMarket) {
+      if (didByMarket) {
         this.loadPairsByMarket();
       } else if (this.picked.exchangers) {
-        const exchangersResponse = await axios.get(this.getLinks.pairs);
+        let data;
+        try {
+          const exchangersResponse = await axios.get(this.getLinks.pairs);
 
-        const { data } = exchangersResponse;
+          ({ data } = exchangersResponse);
+        } catch (e) {
+          this.$emit('showMsg', { type: 'crash', text: 'Ошибка принятия Пар. Пары не загружены.' });
+        }
 
 
         this.pairsData = data;
@@ -225,8 +237,6 @@ export default {
           dateTo = dateTo.replace('/', '%2');
           link += `&dateTo=${dateTo}`;
         }
-        // console.log(link);
-
         // Set response
         const response = await axios.get(link);
         if (response.data.length === 0) {
@@ -235,18 +245,10 @@ export default {
         this.$emit('showTable', response.data);
       } catch (e) {
         console.log(e);
-        this.$emit('showMsg', { type: 'crash', text: `${e}. Ошибка отправки/принятия запроса. Данные загружены из локальной БД` });
-        this.$emit('showTable', localDB.pars);
+        this.$emit('showMsg', { type: 'crash', text: `${e} Ошибка отправки/принятия запроса. Данные загружены из локальной БД` });
+        console.log(fakeDB[this.getNameRate], 'result');
+        this.$emit('showTable', fakeDB[this.getNameRate].result);
       }
-    },
-    normalizePairsByAssociation(array) {
-      const { associaces } = localDB;
-      const newArr = array.map((item) => {
-        const newName = associaces[item] || item;
-        return newName;
-      });
-
-      return newArr;
     },
     async loadPairsByMarket() {
       let exchangers = this.picked.exchangers;
@@ -296,6 +298,9 @@ h1
 
 @media(max-width: 768px)
 
+  .items__params_by_pairs_input
+    margin-top 20px
+
   .items__params_checkbox
     flex-direction column
     justify-content center
@@ -305,6 +310,9 @@ h1
 
 
 @media(max-width: 430px)
+  .items__params_by_pairs_text
+    margin 10px
+
   .items__params
     font-size .7rem
 

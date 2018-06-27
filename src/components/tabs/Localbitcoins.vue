@@ -37,7 +37,7 @@
 <script>
 
 import axios from 'axios';
-import localDB from '../../../static/localDB';
+import fakeDB from '../../../static/fakeDB/index';
 
 function getValidDate(dateText) {
   // нормализация времени
@@ -58,21 +58,7 @@ function getValidIsBuy(isBuy) {
   }
   return isBuy;
 }
-/*
 
-
-  // нормализация isOnline
-  let isOnline = this.picked.isOnline;
-  isOnline = isOnline === 'Онлайн' ? true : isOnline === 'Локально' ? false : undefined;
-  //
-
-  const link = apiEnum.dataByDateBuyOnline(date, isBuy, isOnline);
-
-  console.log(link);
-
-  // добавление доп полей ?countryCode=10&city=10&currency=10&top=10
-}
-*/
 
 const mainLink = 'https://koshelek.ru/api';
 let oldCountry;
@@ -129,7 +115,7 @@ export default {
     } catch (e) {
       console.log(e);
       this.$emit('showMsg', { type: 'crash', text: `${e}. Ошибка отправки/принятия запроса, регионы загружены из локальный БД.` });
-      this.selects.country.data = localDB.countryCodes;
+      this.selects.country.data = fakeDB.Localbitcoins.countrys;
     }
   },
   methods: {
@@ -170,7 +156,7 @@ export default {
 
         let link = apiEnum.dataByDateBuyOnline(date, isBuy, isOnline);
 
-
+        // вынести в отдельную функцию с циклом значений ? : &
         link += '?';
         const validContry = this.picked.country && this.picked.country.length > 0;
         // если выбрана страна
@@ -188,14 +174,22 @@ export default {
         // добавление доп полей ?countryCode=10&city=10&currency=10&top=10
         // console.log(link);
 
-        const response = await axios.get(link);
-        if (response.data.length === 0) {
-          this.$emit('showMsg', { type: 'info', text: 'По вашему запросу нечего не найдено' });
-        }
+        (async function setResult(vm) {
+          try {
+            const response = await axios.get(link);
+            if (response.data.length === 0) {
+              vm.$emit('showMsg', { type: 'info', text: 'По вашему запросу нечего не найдено' });
+            }
 
-        this.$emit('showTable', response.data);
+
+            vm.$emit('showTable', response.data);
+          } catch (e) {
+            vm.$emit('showTable', fakeDB.Localbitcoins.result);
+            vm.$emit('showMsg', { type: 'crash', text: 'Ошибка получение результата. Данные загружены из локального хранилища' });
+          }
+        }(this));
       } catch (e) {
-        console.log(e);
+        // console.log(e);
         this.$emit('showMsg', { type: e.type, text: e.text });
       }
     },

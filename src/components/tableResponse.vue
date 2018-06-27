@@ -49,7 +49,6 @@ export default {
   },
   watch: {
     /* itemOnPage(oldV, newV) {
-      console.log(newV);
       if (newV < 5 || oldV < 5) {
         this.itemOnPage = 5;
       }
@@ -65,7 +64,6 @@ export default {
       const lngData = Object.keys(this.data[0]).length;
       const indexTable = lngData === 2 ? 0 : 1;
       const headers = this.tables[indexTable].headers;
-      // console.log(this.data[0]);
       return {
         headers,
         indexTable,
@@ -87,7 +85,6 @@ export default {
     normalizeItems() {
       if (this.tableType.indexTable === 0) {
         let data = this.data;
-        // console.log(data);
         data = data.map((item) => {
           const t = new Date(item.ts);
 
@@ -97,7 +94,6 @@ export default {
           const textDate = `${t.getHours()}:${t.getMinutes()}:${t.getMinutes()}-${t.getDate()}/${t.getMonth()}/${t.getFullYear()}`;
           return { val: item.val, bckval: 1 / item.val, ts: textDate };
         });
-        // console.log(data);
         return data;
       }
       return this.data;
