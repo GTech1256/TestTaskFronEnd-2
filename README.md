@@ -1,27 +1,28 @@
-# koshelek.ru
+# vue
 
-> A Vue.js project
+> Тестовое задание на frontEnd
 
-## Build Setup
+## ТЗ выглядело следующим образом
 
 ``` bash
-# install dependencies
-npm install
+Доброе утро,
 
-# serve with hot reload at localhost:8080
-npm run dev
+Есть плохо сделанный фронт для API:
+https://rates.fin.so/currencies
+https://rates.fin.so/transfer
 
-# build for production with minification
-npm run build
+Необходимо улучшить работу фронтенда исторической выборки курсов с различных сервисов, курсы этот фронтенд получает по API
+*api link*
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
+Нужно сделать максимально удобно, можно на 1 странице.
+Без UI, стандартными компонентами.
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# Немного о приложении
+- Есть баги
+- Лень писать доки для него
+- Есть ~говнокод~ сырой код
+- Слишком много правок приходило из-за которых нужно было переделывать приложение.
+
+# Протестить можно на:
+[heroku](https://stormy-wildwood-72984.herokuapp.com/)
